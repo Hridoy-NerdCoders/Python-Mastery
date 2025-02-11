@@ -163,12 +163,314 @@ num_2 = int(num_2)
 print(num_1 + num_2)  # Output: 300
 ```
 
+## List, Tuple, and Set Operations
+
+### List Operations
+Lists in Python are mutable, meaning they can be changed after creation. Here are some common operations you can perform on lists:
+
+#### Creating and Accessing Lists
+```python
+courses = ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(len(courses))  # Output: 5
+print(courses[0])  # Output: Algorithm
+print(courses[4])  # Output: C++
+print(courses[-1])  # Output: C++
+print(courses[-4])  # Output: Python
+```
+
+#### Slicing Lists
+```python
+print(courses[1:5])  # Output: ['Python', 'Java', 'DS', 'C++']
+print(courses[:5])  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(courses[1:])  # Output: ['Python', 'Java', 'DS', 'C++']
+```
+
+#### Modifying Lists
+```python
+courses.append('Django')
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.insert(0, 'Fundamentals')
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses_2 = ['Dart', 'Flutter']
+courses.insert(0, courses_2)
+print(courses)  # Output: [['Dart', 'Flutter'], 'Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+print(courses[0])  # Output: ['Dart', 'Flutter']
+
+courses.pop(0)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.append(courses_2)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', ['Dart', 'Flutter']]
+
+courses.pop()
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.extend(courses_2)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart', 'Flutter']
+
+courses.remove('Fundamentals')
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart', 'Flutter']
+
+popped = courses.pop()
+print(popped)  # Output: Flutter
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart']
+```
+
+#### Reversing and Sorting Lists
+```python
+courses.reverse()
+print(courses)  # Output: ['Dart', 'Django', 'C++', 'DS', 'Java', 'Python', 'Algorithm']
+
+courses.sort()
+print(courses)  # Output: ['Algorithm', 'C++', 'DS', 'Dart', 'Django', 'Java', 'Python']
+
+nums = [1, 3, 4, 2, 1, 88, 12, 9]
+nums.sort()
+print(nums)  # Output: [1, 1, 2, 3, 4, 9, 12, 88]
+
+nums.sort(reverse=True)
+print(nums)  # Output: [88, 12, 9, 4, 3, 2, 1, 1]
+
+sorted_nums_ascen = sorted(nums)
+print(sorted_nums_ascen)  # Output: [1, 1, 2, 3, 4, 9, 12, 88]
+print(nums)  # Output: [88, 12, 9, 4, 3, 2, 1, 1]
+```
+
+#### Other List Operations
+```python
+print(min(nums))  # Output: 1
+print(max(nums))  # Output: 88
+print(sum(nums))  # Output: 120
+
+print(courses.index('Java'))  # Output: 5
+print('Art' in courses)  # Output: False
+print('C++' in courses)  # Output: True
+
+for course in courses:
+    print(course)
+
+for index, course in enumerate(courses, start=1):
+    print(index, course)
+
+courses_str = ', '.join(courses)
+print(courses_str)  # Output: Algorithm, C++, DS, Dart, Django, Java, Python
+
+courses_str = ' $ '.join(courses)
+print(courses_str)  # Output: Algorithm $ C++ $ DS $ Dart $ Django $ Java $ Python
+
+new_list_of_courses = courses_str.split(' $ ')
+print(new_list_of_courses)  # Output: ['Algorithm', 'C++', 'DS', 'Dart', 'Django', 'Java', 'Python']
+```
+
+#### List Mutability
+```python
+list_1 = ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+list_2 = list_1
+print(list_1)  # Output: ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+print(list_2)  # Output: ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+
+list_1[0] = 'Unknown!'
+print(list_1)  # Output: ['Unknown!', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+print(list_2)  # Output: ['Unknown!', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+```
+
+### Tuple Operations
+Tuples in Python are immutable, meaning they cannot be changed after creation. They are useful for fixed collections of items.
+
+```python
+tuple_1 = ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+tuple_2 = tuple_1
+
+print(tuple_1)  # Output: ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+print(tuple_2)  # Output: ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+
+# tuple_1[0] = 'Unknown!'  # This will raise a TypeError
+```
+
+### Set Operations
+Sets in Python are unordered collections of unique elements. They are useful for membership tests and eliminating duplicate entries.
+
+```python
+cs_courses = {'Discrete Mathematics', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks'}
+print(cs_courses)  # Output: {'Discrete Mathematics', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks'}
+```
 
 
 
 
 
+## List, Tuple, and Set Operations
 
+### List Operations
+Lists in Python are mutable, meaning they can be changed after creation. Here are some common operations you can perform on lists:
+
+#### Creating and Accessing Lists
+```python
+courses = ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(len(courses))  # Output: 5
+print(courses[0])  # Output: Algorithm
+print(courses[4])  # Output: C++
+print(courses[-1])  # Output: C++
+print(courses[-4])  # Output: Python
+```
+
+#### Slicing Lists
+```python
+print(courses[1:5])  # Output: ['Python', 'Java', 'DS', 'C++']
+print(courses[:5])  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++']
+print(courses[1:])  # Output: ['Python', 'Java', 'DS', 'C++']
+```
+
+#### Modifying Lists
+```python
+courses.append('Django')
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.insert(0, 'Fundamentals')
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses_2 = ['Dart', 'Flutter']
+courses.insert(0, courses_2)
+print(courses)  # Output: [['Dart', 'Flutter'], 'Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+print(courses[0])  # Output: ['Dart', 'Flutter']
+
+courses.pop(0)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.append(courses_2)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', ['Dart', 'Flutter']]
+
+courses.pop()
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django']
+
+courses.extend(courses_2)
+print(courses)  # Output: ['Fundamentals', 'Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart', 'Flutter']
+
+courses.remove('Fundamentals')
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart', 'Flutter']
+
+popped = courses.pop()
+print(popped)  # Output: Flutter
+print(courses)  # Output: ['Algorithm', 'Python', 'Java', 'DS', 'C++', 'Django', 'Dart']
+```
+
+#### Reversing and Sorting Lists
+```python
+courses.reverse()
+print(courses)  # Output: ['Dart', 'Django', 'C++', 'DS', 'Java', 'Python', 'Algorithm']
+
+courses.sort()
+print(courses)  # Output: ['Algorithm', 'C++', 'DS', 'Dart', 'Django', 'Java', 'Python']
+
+nums = [1, 3, 4, 2, 1, 88, 12, 9]
+nums.sort()
+print(nums)  # Output: [1, 1, 2, 3, 4, 9, 12, 88]
+
+nums.sort(reverse=True)
+print(nums)  # Output: [88, 12, 9, 4, 3, 2, 1, 1]
+
+sorted_nums_ascen = sorted(nums)
+print(sorted_nums_ascen)  # Output: [1, 1, 2, 3, 4, 9, 12, 88]
+print(nums)  # Output: [88, 12, 9, 4, 3, 2, 1, 1]
+```
+
+#### Other List Operations
+```python
+print(min(nums))  # Output: 1
+print(max(nums))  # Output: 88
+print(sum(nums))  # Output: 120
+
+print(courses.index('Java'))  # Output: 5
+print('Art' in courses)  # Output: False
+print('C++' in courses)  # Output: True
+
+for course in courses:
+    print(course)
+
+for index, course in enumerate(courses, start=1):
+    print(index, course)
+
+courses_str = ', '.join(courses)
+print(courses_str)  # Output: Algorithm, C++, DS, Dart, Django, Java, Python
+
+courses_str = ' $ '.join(courses)
+print(courses_str)  # Output: Algorithm $ C++ $ DS $ Dart $ Django $ Java $ Python
+
+new_list_of_courses = courses_str.split(' $ ')
+print(new_list_of_courses)  # Output: ['Algorithm', 'C++', 'DS', 'Dart', 'Django', 'Java', 'Python']
+```
+
+#### List Mutability
+```python
+list_1 = ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+list_2 = list_1
+print(list_1)  # Output: ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+print(list_2)  # Output: ['Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+
+list_1[0] = 'Unknown!'
+print(list_1)  # Output: ['Unknown!', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+print(list_2)  # Output: ['Unknown!', 'Tasin', 'Nova', 'Rupa', 'Hridoy']
+```
+
+### Tuple Operations
+Tuples in Python are immutable, meaning they cannot be changed after creation. They are useful for fixed collections of items.
+
+```python
+tuple_1 = ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+tuple_2 = tuple_1
+
+print(tuple_1)  # Output: ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+print(tuple_2)  # Output: ('Tanha', 'Tasin', 'Nova', 'Rupa', 'Hridoy')
+
+# tuple_1[0] = 'Unknown!'  # This will raise a TypeError
+```
+
+### Set Operations
+Sets in Python are unordered collections of unique elements. They are useful for membership tests and eliminating duplicate entries.
+
+```python
+cs_courses = {'Discrete Mathematics', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks'}
+print(cs_courses)  # Output: {'Discrete Mathematics', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks'}
+
+# Membership test
+print('Computer Networks' in cs_courses)  # Output: True
+
+ece_courses = {'Digital Communication', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks', 'Digital Electronics'}
+print(ece_courses)  # Output: {'Digital Communication', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks', 'Digital Electronics'}
+
+print(cs_courses.intersection(ece_courses))  # Output: {'Fundamentals of Computer', 'Software Engineering', 'Computer Networks'}
+print(cs_courses.difference(ece_courses))  # Output: {'Discrete Mathematics'}
+print(cs_courses.union(ece_courses))  # Output: {'Discrete Mathematics', 'Fundamentals of Computer', 'Software Engineering', 'Computer Networks', 'Digital Communication', 'Digital Electronics'}
+```
+
+### Creating Empty Collections
+```python
+# Empty lists
+empty_list = []
+empty_list = list()
+
+# Empty tuples
+empty_tuple = ()
+empty_tuple = tuple()
+
+# Empty sets
+empty_set = set()
+```
+### Summary
+
+| Feature             | Lists                                      | Tuples                                     | Sets                                      |
+|---------------------|--------------------------------------------|--------------------------------------------|-------------------------------------------|
+| Mutability          | Mutable (can be changed)                   | Immutable (cannot be changed)              | Mutable (can be changed)                  |
+| Order               | Ordered                                    | Ordered                                    | Unordered                                 |
+| Duplicates          | Allows duplicate elements                  | Allows duplicate elements                  | Does not allow duplicate elements         |
+| Common Operations   | Creating, accessing, slicing, modifying, reversing, sorting, and other list-specific methods | Creating and accessing                     | Membership tests, eliminating duplicates, union, intersection, difference |
+| Use Case            | General-purpose, flexible collections      | Fixed collections of items                 | Unique collections, set operations        |
+| Empty Collections   | `empty_list = []` or `empty_list = list()` | `empty_tuple = ()` or `empty_tuple = tuple()` | `empty_set = set()` (not `{}` which creates a dictionary) |
+```
 
 
 
