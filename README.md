@@ -3,7 +3,75 @@
 
 Python is a high-level, interpreted programming language known for its readability and versatility. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. Python is widely used for web development, data analysis, artificial intelligence, scientific computing, and more.
 
+## Is Python a Fully Object-Oriented Programming Language?
 
+Python is not a fully object-oriented programming language, but it supports object-oriented programming (OOP) principles such as inheritance, polymorphism, encapsulation, and abstraction. It also supports procedural and functional programming paradigms.
+
+### Built-in Data Types and Classes
+
+In Python, everything is an object, including built-in data types:
+- **Integers**: Instances of the `int` class.
+- **Strings**: Instances of the `str` class.
+- **Lists**: Instances of the `list` class.
+- **Tuples**: Instances of the `tuple` class.
+- **Dictionaries**: Instances of the `dict` class.
+
+### Example: Using Built-in Data Types as Classes
+```python
+# Integer
+num = 10
+print(type(num))  # Output: <class 'int'>
+
+# String
+message = "Hello, World!"
+print(type(message))  # Output: <class 'str'>
+
+# List
+courses = ['Python', 'Java', 'C++']
+print(type(courses))  # Output: <class 'list'>
+
+# Dictionary
+student = {'name': 'Hridoy', 'age': 23}
+print(type(student))  # Output: <class 'dict'>
+```
+
+## Why Python is Not a Fully Object-Oriented Programming Language
+
+Python supports multiple programming paradigms, not just OOP. This flexibility allows developers to choose the most appropriate paradigm for their specific use case, but it also means that Python does not enforce OOP principles as strictly as some other languages.
+
+### Fully Object-Oriented Programming Languages
+
+Fully object-oriented languages enforce OOP principles throughout the language:
+- **Smalltalk**: Treats everything as an object, including numbers and control structures.
+- **Ruby**: Designed to be fully object-oriented, enforcing OOP principles strictly.
+
+### Characteristics of Fully Object-Oriented Languages
+1. **Everything is an Object**: All entities are objects.
+2. **Message Passing**: Operations are performed by sending messages to objects.
+3. **Encapsulation**: Data and methods are encapsulated within objects.
+4. **Inheritance and Polymorphism**: Objects can inherit properties and methods, and polymorphism allows objects to be treated as instances of their parent class.
+
+## Are Java, C++, and C# Fully Object-Oriented Programming Languages?
+
+### Java
+- **Mostly Object-Oriented**: Enforces OOP principles but has primitive data types (e.g., `int`, `char`, `boolean`) that are not objects. Provides wrapper classes (e.g., `Integer`, `Character`, `Boolean`).
+
+### C++
+- **Not Fully Object-Oriented**: Multi-paradigm language supporting procedural, object-oriented, and generic programming. Allows procedural programming with functions and global variables.
+
+### C#
+- **Mostly Object-Oriented**: Enforces OOP principles and treats everything as an object, including primitive data types through the .NET framework's `System` namespace. Provides struct types (e.g., `Int32`, `Char`, `Boolean`).
+
+### Summary Table
+
+| Language | Fully Object-Oriented | Notes |
+|----------|-----------------------|-------|
+| Python   | No                    | Supports multiple paradigms |
+| Java     | Mostly                | Has primitive data types, uses wrapper classes |
+| C++      | No                    | Multi-paradigm, supports procedural programming |
+| C#       | Mostly                | Has primitive data types, uses struct types |
+
+In summary, while Python supports OOP principles, its flexibility in supporting multiple paradigms means it is not considered fully object-oriented. Java and C# are close to being fully object-oriented but have some exceptions with primitive data types. C++ is not fully object-oriented due to its support for multiple programming paradigms.
 
 
 ## Python String Operations
@@ -473,11 +541,254 @@ empty_set = set()
 ```
 
 
+## Dictionary Operations
+
+Dictionaries in Python are mutable, unordered collections of key-value pairs. Keys can be any immutable data types, such as strings, numbers, or tuples.
+
+### Creating and Accessing Dictionaries
+```python
+student = {'name': 'Hridoy', 'age': 23, 'courses': ['Python', 'Java'], 1: 'Islam'}
+print(student)  # Output: {'name': 'Hridoy', 'age': 23, 'courses': ['Python', 'Java'], 1: 'Islam'}
+print(student['name'])  # Output: Hridoy
+print(student['courses'])  # Output: ['Python', 'Java']
+print(student[1])  # Output: Islam
+print(student.get('name'))  # Output: Hridoy
+# print(student['phone'])  # KeyError: 'phone'
+print(student.get('phone'))  # Output: None
+print(student.get('phone', 'Not Found!'))  # Output: Not Found!
+```
+
+### Adding and Updating Dictionary Entries
+```python
+student['phone'] = '017XXXXXXXX'
+print(student.get('phone', 'Not Found!'))  # Output: 017XXXXXXXX
+student['name'] = 'SRHridoy'
+print(student)  # Output: {'name': 'SRHridoy', 'age': 23, 'courses': ['Python', 'Java'], 1: 'Islam', 'phone': '017XXXXXXXX'}
+
+# Multiple updates
+student.update({'name': 'Md. Sohanur Rahman Hridoy', 'isMarried': True})
+print(student)  # Output: {'name': 'Md. Sohanur Rahman Hridoy', 'age': 23, 'courses': ['Python', 'Java'], 1: 'Islam', 'phone': '017XXXXXXXX', 'isMarried': True}
+```
+
+### Removing Dictionary Entries
+```python
+del student[1]
+print(student)  # Output: {'name': 'Md. Sohanur Rahman Hridoy', 'age': 23, 'courses': ['Python', 'Java'], 'phone': '017XXXXXXXX', 'isMarried': True}
+
+popped = student.pop('isMarried')
+print(popped)  # Output: True
+print(student)  # Output: {'name': 'Md. Sohanur Rahman Hridoy', 'age': 23, 'courses': ['Python', 'Java'], 'phone': '017XXXXXXXX'}
+```
+
+### Dictionary Methods
+```python
+print(len(student))  # Output: 4
+print(student.keys())  # Output: dict_keys(['name', 'age', 'courses', 'phone'])
+print(student.values())  # Output: dict_values(['Md. Sohanur Rahman Hridoy', 23, ['Python', 'Java'], '017XXXXXXXX'])
+print(student.items())  # Output: dict_items([('name', 'Md. Sohanur Rahman Hridoy'), ('age', 23), ('courses', ['Python', 'Java']), ('phone', '017XXXXXXXX')])
+```
+
+### Iterating Through a Dictionary
+```python
+for key, value in student.items():
+    print(key, value)
+    # Output:
+    # name Md. Sohanur Rahman Hridoy
+    # age 23
+    # courses ['Python', 'Java']
+    # phone 017XXXXXXXX
+
+for key, value in student.items():
+    print(f'{key} : {value}')
+    # Output:
+    # name : Md. Sohanur Rahman Hridoy
+    # age : 23
+    # courses : ['Python', 'Java']
+    # phone : 017XXXXXXXX
+```
 
 
+## Conditional Statements and Match Statements
 
+### Traditional Conditional Statements
+Python supports traditional conditional statements using `if`, `elif`, and `else` keywords. Here are some examples:
 
+#### Example 1: Language Check
+```python
+language = 'Python'
 
+if language == 'Python':
+    print('Language is Python')
+elif language == 'Java':
+    print('Language is Java')
+elif language == 'JavaScript':
+    print('Language is JavaScript')
+else:
+    print('No Match')
+```
+
+#### Example 2: User Authentication
+```python
+user = 'Admin'
+logged_in = True
+
+if user == 'Admin' and logged_in:
+    print('Admin Page')
+else:
+    print('Bad Credentials')
+
+if not logged_in:
+    print('Please log in')
+else:
+    print('Welcome')
+```
+
+### Match Statements
+Python 3.10 introduced the `match` statement, which is similar to switch-case statements in other languages. It allows for more readable and concise code when dealing with multiple conditions.
+
+#### Example 1: Language Check with Match
+```python
+language = 'Python'
+
+match language:
+    case 'Python':
+        print('Language is Python')
+    case 'Java':
+        print('Language is Java')
+    case 'JavaScript':
+        print('Language is JavaScript')
+    case _:
+        print('No Match')
+```
+
+### Identity and Equality
+Python provides two ways to compare objects: `==` for equality and `is` for identity.
+
+#### Example: Comparing Lists
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+
+print(a == b)  # Output: True (values are equal)
+print(a is b)  # Output: False (different objects)
+print(id(a))   # Output: Unique id of a
+print(id(b))   # Output: Unique id of b
+print(id(a) == id(b))  # Output: False (different ids)
+
+a = b
+print(a == b)  # Output: True (values are equal)
+print(a is b)  # Output: True (same object)
+print(id(a))   # Output: Unique id of a
+print(id(b))   # Output: Unique id of b
+print(id(a) == id(b))  # Output: True (same ids)
+```
+
+### False Values in Python
+Python considers several values as `False` in a boolean context. These include `False`, `None`, `0`, `0.0`, `''`, `()`, `[]`, and `{}`.
+
+#### Example: Checking False Values
+```python
+false_values = [False, None, 0, 0.0, '', (), [], {}]
+
+for value in false_values:
+    if value:
+        print(f'{value} is True')
+    else:
+        print(f'{value} is False')
+```
+
+### Checking for Empty Collections
+You can check if a list, dictionary, or tuple is empty using the `not` keyword.
+
+#### Example: Empty Collections
+```python
+sample_list = []
+sample_dict = {}
+sample_tuple = ()
+
+if not sample_list:
+    print('The list is empty')
+else:
+    print('The list is not empty')
+
+if not sample_dict:
+    print('The dictionary is empty')
+else:
+    print('The dictionary is not empty')
+
+if not sample_tuple:
+    print('The tuple is empty')
+else:
+    print('The tuple is not empty')
+```
+
+# nums = [1,2,3,4,5]
+
+# Loop through each number in the list `nums`
+for num in nums:
+    # Check if the current number is 3
+    if num == 3:
+        # Print 'Found!' and exit the loop
+        print('Found!')
+        break
+    # Print the current number
+    print(num)
+
+# Loop through each number in the list `nums` again
+for num in nums:
+    # Check if the current number is 3
+    if num == 3:
+        # Print 'Skipped!' and skip to the next iteration
+        print('Skipped!')
+        continue
+    # Print the current number
+    print(num)
+
+# Nested loop: Loop through each number in the list `nums`
+for num in nums:
+    # Inner loop: Loop through each letter in the string 'Umar'
+    for letter in 'Umar':
+        # Print the current number and letter
+        print(num, letter)
+
+# n = 10
+
+# Loop from 0 to n-1
+for i in range(n):
+    # Print the result of i multiplied by 5
+    print(i * 5)
+
+# Loop from 1 to n (inclusive)
+for i in range(1, n + 1):
+    # Print the multiplication table for 5
+    print(f'{5} X {i} = {5 * i}')
+
+# Prompt the user to enter the number of rows
+userInput = int(input('Enter the number of rows: '))
+# Prompt the user to enter a symbol
+userInput2 = input('Enter a symbol: ')
+
+# Loop from 1 to userInput (inclusive)
+for i in range(1, userInput + 1):
+    # Inner loop to print the symbol `userInput2` `i` times
+    for j in range(i):
+        print(userInput2, end='')
+    # Print a new line after each row
+    print()
+
+# Loop from 0 to n-1
+for i in range(n):
+    # Print the symbol `userInput2` `i` times
+    print(userInput2 * i)
+
+# Initialize x to 0
+x = 0
+# Loop while x is less than 10
+while x < 10:
+    # Print the current value of x
+    print(x)
+    # Increment x by 1
+    x += 1
 
 
 
