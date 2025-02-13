@@ -722,79 +722,212 @@ else:
     print('The tuple is not empty')
 ```
 
-# nums = [1,2,3,4,5]
 
 # Loop through each number in the list `nums`
+```python
+nums = [1, 2, 3, 4, 5]
+
 for num in nums:
-    # Check if the current number is 3
     if num == 3:
-        # Print 'Found!' and exit the loop
         print('Found!')
         break
-    # Print the current number
     print(num)
+```
 
 # Loop through each number in the list `nums` again
+```python
 for num in nums:
-    # Check if the current number is 3
     if num == 3:
-        # Print 'Skipped!' and skip to the next iteration
         print('Skipped!')
         continue
-    # Print the current number
     print(num)
+```
 
 # Nested loop: Loop through each number in the list `nums`
+```python
 for num in nums:
-    # Inner loop: Loop through each letter in the string 'Umar'
     for letter in 'Umar':
-        # Print the current number and letter
         print(num, letter)
-
-# n = 10
+```
 
 # Loop from 0 to n-1
+```python
+n = 10
+
 for i in range(n):
-    # Print the result of i multiplied by 5
     print(i * 5)
+```
 
 # Loop from 1 to n (inclusive)
+```python
 for i in range(1, n + 1):
-    # Print the multiplication table for 5
     print(f'{5} X {i} = {5 * i}')
+```
 
-# Prompt the user to enter the number of rows
+# Prompt the user to enter the number of rows and a symbol
+```python
 userInput = int(input('Enter the number of rows: '))
-# Prompt the user to enter a symbol
 userInput2 = input('Enter a symbol: ')
 
-# Loop from 1 to userInput (inclusive)
 for i in range(1, userInput + 1):
-    # Inner loop to print the symbol `userInput2` `i` times
     for j in range(i):
         print(userInput2, end='')
-    # Print a new line after each row
     print()
+```
 
 # Loop from 0 to n-1
+```python
 for i in range(n):
-    # Print the symbol `userInput2` `i` times
     print(userInput2 * i)
+```
 
-# Initialize x to 0
-x = 0
 # Loop while x is less than 10
+```python
+x = 0
+
 while x < 10:
-    # Print the current value of x
     print(x)
-    # Increment x by 1
     x += 1
+```
 
 
+## Function Definitions and Usage
+
+### 1. `hello_func()`
+```python
+def hello_func():
+    """
+    A placeholder function that does nothing.
+    """
+    pass
+```
+- **Description**: This function is a placeholder and does not perform any operations.
+
+### 2. `greetings()`
+```python
+def greetings():
+    """
+    Prints a greeting message 'Good Morning!'.
+    """
+    print('Good Morning!')
+```
+- **Description**: This function prints a greeting message "Good Morning!".
+
+### 3. `hi()`
+```python
+def hi():
+    """
+    Returns a greeting message 'Hi, Hridoy!'.
+    
+    Returns:
+        str: A greeting message.
+    """
+    return 'Hi, Hridoy!'
+```
+- **Description**: This function returns a greeting message "Hi, Hridoy!".
+- **Returns**: A string containing the greeting message.
+
+### 4. `cus_greet(name)`
+```python
+def cus_greet(name):
+    """
+    Returns a customized greeting message.
+    
+    Args:
+        name (str): The name to include in the greeting.
+    
+    Returns:
+        str: A customized greeting message.
+    """
+    return f'Good Morning, {name}!'
+```
+- **Description**: This function returns a customized greeting message.
+- **Arguments**:
+  - `name` (str): The name to include in the greeting.
+- **Returns**: A string containing the customized greeting message.
+
+### 5. `student_info(name, std_id='2102002')`
+```python
+def student_info(name, std_id='2102002'):
+    """
+    Returns student information in a formatted string.
+    
+    Args:
+        name (str): The name of the student.
+        std_id (str, optional): The student ID. Defaults to '2102002'.
+    
+    Returns:
+        str: Formatted student information.
+    """
+    return f'{name} , {std_id}'
+```
+- **Description**: This function returns student information in a formatted string.
+- **Arguments**:
+  - `name` (str): The name of the student.
+  - `std_id` (str, optional): The student ID. Defaults to '2102002'.
+- **Returns**: A string containing the formatted student information.
+
+### 6. `bus_info(*args, **kwargs)`
+```python
+def bus_info(*args, **kwargs):
+    """
+    Prints positional and keyword arguments.
+    
+    Args:
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+    """
+    print(args)
+    print(kwargs)
+```
+- **Description**: This function prints the positional and keyword arguments passed to it.
+- **Arguments**:
+  - `*args`: Variable length argument list.
+  - `**kwargs`: Arbitrary keyword arguments.
+
+### 7. `course_info(*args, **kwargs)`
+```python
+def course_info(*args, **kwargs):
+    """
+    Prints course information from positional and keyword arguments.
+    
+    Args:
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+    """
+    print(args)
+    print(kwargs)
+```
+- **Description**: This function prints course information from the positional and keyword arguments passed to it.
+- **Arguments**:
+  - `*args`: Variable length argument list.
+  - `**kwargs`: Arbitrary keyword arguments.
 
 
+### Example: Days in a Month
+This example demonstrates how to determine the number of days in a given month of a specific year, accounting for leap years.
 
+```python
+# Number of days per month. First value placeholder for indexing purposes.
+month_days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+def is_leap(year):
+    """Return True for leap years, False for non-leap years."""
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+def days_in_month(year, month):
+    """Return number of days in that month in that year."""
+    if not 1 <= month <= 12:
+        return 'Invalid Month'
+    if month == 2 and is_leap(year):
+        return 29
+    return month_days[month]
+
+print(is_leap(2020))  # Output: True
+print(is_leap(2027))  # Output: False
+
+print(days_in_month(2027, 2))  # Output: 28
+```
 
 
 
