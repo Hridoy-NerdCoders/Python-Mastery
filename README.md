@@ -929,13 +929,683 @@ print(is_leap(2027))  # Output: False
 print(days_in_month(2027, 2))  # Output: 28
 ```
 
+print('Imported my_search_module')
+
+test = 'Test String'
+
+```python
+'''
+This script demonstrates various functionalities in Python, including custom module import, 
+standard library usage, and basic operations.
+
+Functions:
+- find_index(to_search, target): Finds the index of a target value in a sequence.
+
+Modules:
+- search_module: Custom module containing the find_index function and a test variable.
+- sys: Provides access to system-specific parameters and functions.
+- random: Implements pseudo-random number generators for various distributions.
+- math: Provides access to mathematical functions.
+- datetime: Supplies classes for manipulating dates and times.
+- calendar: Provides functions related to the calendar, such as checking for leap years.
+- os: Provides a way of using operating system-dependent functionality.
+- antigravity: A fun module that opens a web browser to the XKCD comic about Python.
+
+Usage:
+- Finds the index of 'Java' in the courses list using the find_index function.
+- Prints the test variable from the search_module.
+- Prints all the paths where Python searches for modules.
+- Selects a random course from the list and prints it.
+- Converts 90 degrees to radians and prints the sine of the angle.
+- Prints today's date.
+- Checks if the year 2020 is a leap year.
+- Prints the current working directory.
+- Prints the file location of the os module.
+'''
+def find_index(to_search, target):
+    '''Find the index of a value in a sequence'''
+    for i, value in enumerate(to_search):
+        if value == target:
+            return i
+    return -1
+
+# import search_module as sm
+from modules.search_module import find_index, test
+# from search_module import *
+
+import sys
+
+courses = ['Python', 'ML', 'Java', 'OOP', 'C++', 'C']
+
+index = find_index(courses, 'Java')
+print(index)
+print(test)
+
+# all the path where python search for modules:
+print(sys.path)
+
+import random
+import math
+import datetime
+import calendar
+import os
+import antigravity
+
+courses = ['C', 'C++', 'Java', 'Python', 'Dart']
+
+random_course = random.choice(courses)
+print(random_course)
+
+rads = math.radians(90)
+print(rads)
+print(math.sin(rads))
+
+today = datetime.date.today()
+print(today)
+
+print(calendar.isleap(2020))
+print(os.getcwd())
+print(os.__file__)
+```
+    
+## Python Script Demonstration
+
+This script demonstrates various functionalities in Python, including custom module import, standard library usage, and basic operations.
+
+### Importing Modules
+
+```python
+# Import the search_module with an alias 'sm' and specific functions from it
+# import search_module as sm
+from modules.search_module import find_index, test
+# from search_module import *
+
+import sys
+```
+
+### List of Courses
+
+```python
+# List of courses
+courses = ['Python', 'ML', 'Java', 'OOP', 'C++', 'C']
+```
+
+### Finding Index
+
+```python
+# Find the index of 'Java' in the courses list using the find_index function
+index = find_index(courses, 'Java')
+print(index)
+print(test)
+```
+
+### Python Module Search Paths
+
+```python
+# Print all the paths where Python searches for modules
+print(sys.path)
+```
+
+### Additional Imports
+
+```python
+import random
+import math
+import datetime
+import calendar
+import os
+import antigravity
+```
+
+### List of Courses (Updated)
+
+```python
+# List of courses
+courses = ['C', 'C++', 'Java', 'Python', 'Dart']
+```
+
+### Random Course Selection
+
+```python
+# Select a random course from the list
+random_course = random.choice(courses)
+print(random_course)
+```
+
+### Mathematical Operations
+
+```python
+# Convert 90 degrees to radians and calculate the sine of the angle
+rads = math.radians(90)
+print(rads)
+print(math.sin(rads))
+```
+
+### Date and Calendar Operations
+
+```python
+# Get today's date
+today = datetime.date.today()
+print(today)
+
+# Check if the year 2020 is a leap year
+print(calendar.isleap(2020))
+```
+
+### OS Operations
+
+```python
+# Print the current working directory
+print(os.getcwd())
+
+# Print the file location of the os module
+print(os.__file__)
+```
 
 
 
 
 
+## This script demonstrates various functionalities of the `os` module in Python, including:
+
+1. Changing the current working directory using `os.chdir()`.
+2. Creating and removing directories using `os.mkdir()`, `os.makedirs()`, `os.rmdir()`, and `os.removedirs()`.
+3. Renaming files or directories using `os.rename()`.
+4. Retrieving and formatting file modification times using `os.stat()` and `datetime.fromtimestamp()`.
+
+```python
+import os
+from datetime import datetime
+
+# Change the current working directory
+os.chdir('/media/md-sohanur-rahman-hridoy/My Files/Future Prep/Exploring Python/Mastering Python/')
+
+# Create and remove directories
+os.mkdir('DemoDir')
+os.makedirs('DemoDir/Demo1')
+os.rmdir('DemoDir')
+os.removedirs('DemoDir/Demo1/')
+
+# Rename files or directories
+os.rename('modules', 'my_modules')
+
+# Retrieve and format file modification times
+mod_time = os.stat('07_functions.py').st_mtime
+print(datetime.fromtimestamp(mod_time))
+
+# List the current working directory and its contents
+print(os.getcwd())
+print(os.listdir())
+
+# Walk through the directory tree
+for dirpath, dirname, filenames in os.walk('/media/md-sohanur-rahman-hridoy/My Files/Future Prep/Exploring Python/Mastering Python/'):
+    print('Current Path:', dirpath)
+    print('Directories:', dirname)
+    print('Files:', filenames)
+
+# Environment variables and file paths
+print(os.environ.get('HOME'))
+file_path = os.path.join(os.environ.get('HOME'), 'test.txt')
+print(file_path)
+
+# File and path operations
+print(os.path.basename('tmp/text.txt'))
+print(os.path.dirname('tmp/text.txt'))
+print(os.path.exists('/tmp/text.txt'))
+print(os.path.isfile('/tmp/fdkfjdk.txt'))
+print(os.path.splitext('/tmp/test.txt'))
+print(dir(os.path))
+```
 
 
+## This script demonstrates the LEGB (Local, Enclosing, Global, Built-in) rule in Python, which is the order in which Python resolves variable names.
+
+1. **Local**: Variables defined within a function.
+2. **Enclosing**: Variables defined in the local scope of enclosing functions.
+3. **Global**: Variables defined at the top level of a module or declared global using the `global` keyword.
+4. **Built-in**: Names preassigned in the built-in names module (e.g., `open`, `range`, `SyntaxError`).
+
+### Examples:
+
+- **Global Scope**:
+    - `x = 'global x'`: A global variable `x` is defined.
+
+- **Local Scope**:
+    - Inside the `test` function, `x` and `y` are local variables.
+    - The parameter `z` is also local to the `test` function.
+
+- **Enclosing Scope**:
+    - In the `outer` function, `x` is defined in the enclosing scope.
+    - The `inner` function has access to `x` from the enclosing `outer` function.
+
+- **Built-in Scope**:
+    - The script can access built-in functions like `min` unless overridden locally.
+
+### Functionality:
+
+- The `test` function demonstrates local scope by defining and printing local variables.
+- The `outer` function demonstrates enclosing scope by defining a variable and accessing it within an inner function.
+- The script prints variables to show the scope resolution order.
+
+### Note:
+- Uncomment the `global x` line in the `test` function to see how it affects the global variable `x`.
+- Uncomment the `nonlocal x` line in the `inner` function to see how it affects the enclosing variable `x`.
+
+### Code Example:
+
+```python
+# import builtins
+# print(dir(builtins))
+
+x = 'global x'
+
+def test(z):
+    # global x
+    x = 'local x'
+    y = 'local y'
+    # print(y)
+    # print(x)
+    print(z)
+    
+test('local z')
+# print(y)
+# print(x)
+# print(z)
+
+# Built-in:
+# def min():
+#     pass
+
+# m = min([5,3,1,2])
+# print(m)
+
+# Enclosing:
+def outer():
+    x = 'outer x'
+    
+    def inner():
+        # nonlocal x
+        x = 'inner x'
+        print(x)
+    inner()
+    print(x)
+
+outer()
+print(x)
+```
+
+
+## List Slicing in Python
+
+List slicing allows you to access a subset of elements from a list. The syntax for slicing is `list[start:end:step]`, where:
+- `start` is the index to begin the slice (inclusive).
+- `end` is the index to end the slice (exclusive).
+- `step` is the interval between each element in the slice.
+
+Consider the following list:
+```python
+my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#          0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+#        -10,-9,-8,-7,-6,-5,-4,-3,-2,-1
+```
+
+### Examples of List Slicing
+
+1. **Slice from index 3 to 7:**
+    ```python
+    print(my_list[3:8])  # Output: [3, 4, 5, 6, 7]
+    ```
+
+2. **Slice from index -7 to -3:**
+    ```python
+    print(my_list[-7:-2])  # Output: [3, 4, 5, 6, 7]
+    ```
+
+3. **Slice from index 1 to -3:**
+    ```python
+    print(my_list[1:-2])  # Output: [1, 2, 3, 4, 5, 6, 7]
+    ```
+
+4. **Slice from index 1 to the end:**
+    ```python
+    print(my_list[1:])  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ```
+
+5. **Slice from index 5 to the end:**
+    ```python
+    print(my_list[5:])  # Output: [5, 6, 7, 8, 9]
+    ```
+
+6. **Slice from the beginning to index -1:**
+    ```python
+    print(my_list[:-1])  # Output: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    ```
+
+7. **Copy the entire list:**
+    ```python
+    print(my_list[:])  # Output: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ```
+
+8. **Slice from index 2 to -2:**
+    ```python
+    print(my_list[2:-1])  # Output: [2, 3, 4, 5, 6, 7, 8]
+    ```
+
+9. **Slice from index 2 to -2 with step 1:**
+    ```python
+    print(my_list[2:-1:1])  # Output: [2, 3, 4, 5, 6, 7, 8]
+    ```
+
+10. **Slice from index 2 to -2 with step 2:**
+    ```python
+    print(my_list[2:-1:2])  # Output: [2, 4, 6, 8]
+    ```
+
+11. **Slice from index -1 to 2 (invalid slice):**
+    ```python
+    print(my_list[-1:2])  # Output: []
+    ```
+
+12. **Slice from index -1 to 2 in reverse:**
+    ```python
+    print(my_list[-1:2:-1])  # Output: [9, 8, 7, 6, 5, 4, 3]
+    ```
+
+13. **Reverse the entire list:**
+    ```python
+    print(my_list[::-1])  # Output: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+    ```
+
+## String Slicing in Python
+
+String slicing works similarly to list slicing. Consider the following URL:
+```python
+sample_url = 'https://srhridoy.com'
+print(sample_url)  # Output: https://srhridoy.com
+```
+
+### Examples of String Slicing
+
+1. **Reverse the URL:**
+    ```python
+    print(sample_url[::-1])  # Output: moc.yodirhrs//:sptth
+    ```
+
+2. **Get the top-level domain:**
+    ```python
+    print(sample_url[-4:])  # Output: .com
+    ```
+
+3. **Print the URL without the `https://`:**
+    ```python
+    print(sample_url[8:])  # Output: srhridoy.com
+    ```
+
+4. **Print the URL without the `https://` or the top-level domain:**
+    ```python
+    print(sample_url[8:-4])  # Output: srhridoy
+    ```
+
+# Comprehensions in Python:
+
+Comprehensions provide a concise way to create lists, dictionaries, sets, and generators. They are more readable and often more efficient than traditional loops.
+
+## List Comprehensions
+
+List comprehensions allow you to create lists in a single line of code.
+
+### Examples:
+
+1. **Basic List Comprehension:**
+    ```python
+    nums = [1, 2, 3, 4, 5]
+    squares = [n * n for n in nums]
+    print(squares)  # Output: [1, 4, 9, 16, 25]
+    ```
+
+2. **Conditional List Comprehension:**
+    ```python
+    even_nums = [n for n in nums if n % 2 == 0]
+    print(even_nums)  # Output: [2, 4]
+    ```
+
+3. **Nested List Comprehension:**
+    ```python
+    pairs = [(x, y) for x in range(3) for y in range(3)]
+    print(pairs)  # Output: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    ```
+
+## Dictionary Comprehensions
+
+Dictionary comprehensions allow you to create dictionaries in a single line of code.
+
+### Examples:
+
+1. **Basic Dictionary Comprehension:**
+    ```python
+    names = ['Alice', 'Bob', 'Charlie']
+    name_lengths = {name: len(name) for name in names}
+    print(name_lengths)  # Output: {'Alice': 5, 'Bob': 3, 'Charlie': 7}
+    ```
+
+2. **Conditional Dictionary Comprehension:**
+    ```python
+    long_names = {name: len(name) for name in names if len(name) > 3}
+    print(long_names)  # Output: {'Alice': 5, 'Charlie': 7}
+    ```
+
+## Set Comprehensions
+
+Set comprehensions allow you to create sets in a single line of code.
+
+### Example:
+
+1. **Basic Set Comprehension:**
+    ```python
+    nums = [1, 2, 2, 3, 4, 4, 5]
+    unique_nums = {n for n in nums}
+    print(unique_nums)  # Output: {1, 2, 3, 4, 5}
+    ```
+
+## Generator Expressions
+
+Generator expressions allow you to create generators in a single line of code.
+
+### Example:
+
+1. **Basic Generator Expression:**
+    ```python
+    nums = [1, 2, 3, 4, 5]
+    squares_gen = (n * n for n in nums)
+    for square in squares_gen:
+        print(square)  # Output: 1 4 9 16 25
+    ```
+
+Comprehensions are a powerful feature in Python that can make your code more readable and efficient. Use them to simplify your code and improve performance.
+
+```python
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# List Comprehensions:
+
+# I want 'n' for each 'n' in nums:
+my_list = [n for n in nums]
+print(my_list)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# I want 'n*n' for each 'n' in nums:
+my_list = [n*n for n in nums]
+print(my_list)  # Output: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+# Using a map + lambda:
+# my_list = map(lambda n: n*n, nums)
+# print(list(my_list))  # Output: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+# I want 'n' for each 'n' in nums if 'n' is even:
+my_list = [n for n in nums if n % 2 == 0]
+print(my_list)  # Output: [2, 4, 6, 8, 10]
+
+# Using a filter + lambda:
+# my_list = filter(lambda n: n % 2 == 0, nums)
+# print(list(my_list))  # Output: [2, 4, 6, 8, 10]
+
+# I want a (letter, num) pair for each letter in 'abcd' and each number in '0123':
+my_list = [(letter, num) for letter in 'abcd' for num in range(4)]
+print(my_list)  # Output: [('a', 0), ('a', 1), ('a', 2), ('a', 3), ('b', 0), ('b', 1), ('b', 2), ('b', 3), ('c', 0), ('c', 1), ('c', 2), ('c', 3), ('d', 0), ('d', 1), ('d', 2), ('d', 3)]
+
+# Dictionary Comprehensions:
+names = ['Bruce', 'Clark', 'Peter', 'Logan', 'Wade']
+heros = ['Batman', 'Superman', 'Spiderman', 'Wolverine', 'Deadpool']
+
+# I want a dict{'name':'hero'} for each name, hero in zip(names, heros):
+my_dict = {name: hero for name, hero in zip(names, heros)}
+print(my_dict)  # Output: {'Bruce': 'Batman', 'Clark': 'Superman', 'Peter': 'Spiderman', 'Logan': 'Wolverine', 'Wade': 'Deadpool'}
+
+# If name not equal to Peter:
+my_dict = {name: hero for name, hero in zip(names, heros) if name != 'Peter'}
+print(my_dict)  # Output: {'Bruce': 'Batman', 'Clark': 'Superman', 'Logan': 'Wolverine', 'Wade': 'Deadpool'}
+
+# Set Comprehensions:
+nums = [1, 1, 2, 1, 3, 4, 3, 4, 5, 5, 6, 7, 8, 7, 9, 9]
+my_set = {n for n in nums}
+print(my_set)  # Output: {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+# Generator Expressions:
+# I want to yield 'n*n' for each 'n' in nums:
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+def gen_func(nums):
+    for n in nums:
+        yield n*n
+
+my_gen = gen_func(nums)
+for i in my_gen:
+    print(i)  # Output: 1 4 9 16 25 36 49 64 81 100
+
+my_gen = (n*n for n in nums)
+for i in my_gen:
+    print(i)  # Output: 1 4 9 16 25 36 49 64 81 100
+```
+
+# This script demonstrates various sorting techniques in Python.
+
+```python
+li = [9,1,4,5,22,21,33,1,3,9]
+
+s_li = sorted(li)
+print('Sorted Variable: \t',s_li)
+print('Original Variable: \t',li)
+li.sort()
+print('Original Variable: \t',li)
+
+s_li = sorted(li, reverse=True)
+print('Sorted Variable: \t',s_li)
+print('Original Variable: \t',li)
+li.sort(reverse=True)
+print('Original Variable: \t',li)
+
+
+tup = (9,1,4,5,22,21,33,1,3,9)
+# tup.sort()
+s_tup = sorted(tup)
+print('Tuple\t:',s_tup)
+
+dic = {'name':'Hridoy','Job':'Programming','Age':None,'OS':'Ubuntu'}
+s_dic = sorted(dic)
+print('Dict\t:',s_dic)
+
+
+li1 = [-4,5,2,-1,0,-9]
+s_li1 = sorted(li1)
+print(li1)
+print(s_li1)
+
+#sorted based on absolute value:
+s_li1 = sorted(li1,key=abs)
+print(s_li1)
+
+#sorting Objs:
+from operator import attrgetter
+class Employee():
+    def __init__(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
+        
+    def __repr__(self):
+        return f'{self.name},{self.age},{self.salary}'
+    
+e1 = Employee('Hridoy',23,100000)
+e2 = Employee('Ravin',24,100000)
+e3 = Employee('Ravi', 22, 100000)
+
+employees = [e1,e2,e3]
+
+# def e_sort(emp):
+#     return emp.age
+
+# s_employees = sorted(employees,key=e_sort)
+# print(s_employees) 
+    
+# s_employees = sorted(employees,key=lambda e:e.name)
+# print(s_employees)      
+
+s_employees = sorted(employees,key=attrgetter('age'))
+print(s_employees)
+```
+
+## Sorting Lists
+- A list `li` is created and sorted using both the `sorted()` function and the `sort()` method.
+- The `sorted()` function returns a new sorted list, leaving the original list unchanged.
+- The `sort()` method sorts the list in place, modifying the original list.
+- Both ascending and descending order sorting are demonstrated.
+
+## Sorting Tuples
+- A tuple `tup` is created and sorted using the `sorted()` function.
+- Note that tuples do not have a `sort()` method, so they must be sorted using `sorted()`.
+
+## Sorting Dictionaries
+- A dictionary `dic` is created and sorted by its keys using the `sorted()` function.
+
+## Sorting Lists with Custom Keys
+- A list `li1` containing both positive and negative integers is sorted.
+- The list is sorted based on absolute values using the `key` parameter in the `sorted()` function.
+
+## Sorting Objects
+- A custom `Employee` class is defined with attributes `name`, `age`, and `salary`.
+- A list of `Employee` objects is created.
+- The list is sorted by the `age` attribute using the `attrgetter` function from the `operator` module.
+
+
+
+
+### Exception Handling in Python
+
+When handling exceptions in Python, it's important to place more specific exceptions before more general ones. This ensures that the specific exception is caught first, and the general exception acts as a fallback.
+
+#### Example Code
+```python
+try:
+    f = open('test.txt')
+    # var = bad_var
+except FileNotFoundError as e:
+    print(e)
+except Exception as e:
+    print(e)
+else:
+    print(f.read())
+    f.close()
+finally:
+    print('Done!')
+```
+
+#### Explanation
+- **try**: The block of code to be executed.
+- **except FileNotFoundError as e**: Catches the `FileNotFoundError` if the file `test.txt` does not exist and prints the error message.
+- **except Exception as e**: Catches any other exceptions that are not caught by the previous except block and prints the error message.
+- **else**: Executes if the try block does not raise an exception. It reads and prints the file content and then closes the file.
+- **finally**: Executes regardless of whether an exception was raised or not. It prints 'Done!'.
+
+This structure ensures that specific exceptions are handled appropriately, and any cleanup code in the `finally` block is always executed.
 
 
 
