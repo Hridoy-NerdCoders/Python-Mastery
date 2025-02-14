@@ -1608,8 +1608,117 @@ finally:
 This structure ensures that specific exceptions are handled appropriately, and any cleanup code in the `finally` block is always executed.
 
 
+## Manually Raising Exceptions
+
+In Python, you can manually raise exceptions using the `raise` statement to handle errors and enforce conditions.
+
+### Syntax
+
+```python
+raise ExceptionType("Error message")
+```
+
+### Example: Raising a ValueError
+
+Raise a `ValueError` for invalid input:
+```python
+def calculate_square_root(x):
+    if x < 0:
+        raise ValueError("Cannot calculate the square root of a negative number")
+    return x ** 0.5
+
+try:
+    result = calculate_square_root(-1)
+except ValueError as e:
+    print(e)  # Output: Cannot calculate the square root of a negative number
+```
+
+### Example: Raising a Custom Exception
+
+Define and raise a custom exception:
+```python
+class CustomError(Exception):
+    pass
+
+def check_value(value):
+    if value > 100:
+        raise CustomError("Value cannot be greater than 100")
+
+try:
+    check_value(150)
+except CustomError as e:
+    print(e)  # Output: Value cannot be greater than 100
+```
+
+### Example: Raising Multiple Exceptions
+
+Raise different exceptions based on conditions:
+```python
+def process_input(value):
+    if not isinstance(value, int):
+        raise TypeError("Value must be an integer")
+    if value < 0:
+        raise ValueError("Value cannot be negative")
+
+try:
+    process_input("abc")
+except TypeError as e:
+    print(e)  # Output: Value must be an integer
+except ValueError as e:
+    print(e)
+```
+
+### Conclusion
+
+Manually raising exceptions helps handle errors effectively and makes your code more robust.
 
 
+## Generating Squares of Numbers
+
+### Function to Generate Squares Using a Generator
+
+```python
+def square_numbers(nums):
+    """
+    Generate squares of numbers using a generator.
+
+    Args:
+        nums (list): A list of numbers to be squared.
+
+    Yields:
+        int: The next square of the number in the list.
+    """
+    for i in nums:
+        yield (i * i)
+```
+
+### Example Usage of the `square_numbers` Generator Function
+
+```python
+my_nums = square_numbers([1, 2, 3, 4, 5])
+
+# Printing each squared number using the generator
+for num in my_nums:
+    print(num)
+```
+
+### Using a Generator Expression to Create Squares of Numbers
+
+```python
+# Example:
+my_nums = (x * x for x in [1, 2, 3, 4, 5])
+
+# Note:
+# Generators do not hold the entire result in memory; they yield one result at a time.
+# This provides better performance compared to list comprehensions when dealing with large datasets.
+```
+
+### Converting the Generator to a List and Printing the List of Squared Numbers
+
+```python
+# Note: Converting to a list will hold all results in memory, losing the performance benefits of the generator.
+print(list(my_nums))
+```
 
 
 
