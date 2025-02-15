@@ -1720,6 +1720,406 @@ my_nums = (x * x for x in [1, 2, 3, 4, 5])
 print(list(my_nums))
 ```
 
+## Python Object-Oriented Programming
+
+### Creating a Class and Instances
+
+```python
+# Define a class named Employee
+class Employee:
+    # Initialize the class with first name, last name, and pay
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@nerdcoder.com"
+    
+    # Method to return the full name of the employee
+    def full_name(self):
+        return f'{self.first} {self.last}'.title()
+
+# Create instances of the Employee class
+emp_1 = Employee('sohanur', 'rahman', 100000)
+emp_2 = Employee('sonal', 'rahman', 110000)
+
+# Print email addresses of the employees
+print(emp_1.email)  # Output: sohanur.rahman@nerdcoder.com
+print(emp_2.email)  # Output: sonal.rahman@nerdcoder.com
+
+# Print full names of the employees
+print(emp_1.full_name())  # Output: Sohanur Rahman
+# The above line is equivalent to:
+print(Employee.full_name(emp_1))  # Output: Sohanur Rahman
+print(emp_2.full_name())  # Output: Sonal Rahman
+```
+
+### Explanation
+
+- **Class Definition**: The `Employee` class is defined with an `__init__` method to initialize the attributes `first`, `last`, `pay`, and `email`.
+- **Instance Creation**: Instances `emp_1` and `emp_2` are created with specific values for `first`, `last`, and `pay`.
+- **Method Definition**: The `full_name` method returns the full name of the employee.
+- **Accessing Attributes and Methods**: The email addresses and full names of the employees are accessed and printed.
+
+### Employee Class Example
+
+This example demonstrates the creation and usage of an `Employee` class in Python. The class includes class variables, instance variables, and methods.
+
+```python
+class Employee:
+    no_of_employees = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@nerdcoder.com"
+        
+        Employee.no_of_employees += 1
+
+    def full_name(self):
+        return f'{self.first} {self.last}'.title()
+        
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+emp_1 = Employee('sohanur', 'rahman', 100000)
+emp_2 = Employee('sonal', 'rahman', 110000)
+
+print(emp_1.pay)
+emp_1.apply_raise()
+print(emp_1.pay)
+
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+print(Employee.raise_amount)
+
+print(emp_1.__dict__)
+print(Employee.__dict__)
+
+Employee.raise_amount = 1.05
+
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+print(Employee.raise_amount)
+
+emp_1.raise_amount = 1.06
+
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+print(Employee.raise_amount)
+
+print(emp_1.__dict__)
+print(Employee.no_of_employees)
+```
+
+### Explanation
+
+- **Class Variables**: `no_of_employees` and `raise_amount` are class variables shared among all instances.
+- **Instance Variables**: `first`, `last`, `pay`, and `email` are instance variables unique to each instance.
+- **Methods**: 
+  - `__init__`: Initializes the instance variables and increments the employee count.
+  - `full_name`: Returns the full name of the employee.
+  - `apply_raise`: Applies a raise to the employee's pay based on the `raise_amount`.
+
+### Output
+
+The code demonstrates the following:
+- Creating instances of the `Employee` class.
+- Accessing and modifying instance and class variables.
+- Applying a raise to an employee's pay.
+- Printing the dictionary representation of an instance and the class.
+- Modifying the class variable `raise_amount` and observing its effect on instances.
+- Overriding the class variable `raise_amount` for a specific instance.
+
+## Class Variables, Class Methods, Alternative Constructors, Instance Variables, and Static Methods
+
+In Python, classes can have different types of variables and methods that serve various purposes. Here's an explanation of each:
+
+### Class Variables
+Class variables are shared among all instances of a class. They are defined within the class but outside any instance methods. They are typically used to store data that is common to all instances of the class.
+
+### Instance Variables
+Instance variables are unique to each instance of a class. They are defined within the `__init__` method and are used to store data that is specific to each instance.
+
+### Class Methods
+Class methods are methods that operate on the class itself rather than on instances of the class. They are defined using the `@classmethod` decorator and take `cls` as the first parameter, which represents the class.
+
+### Alternative Constructors
+Alternative constructors are class methods that provide additional ways to create instances of a class. They are often used to create instances from different types of input data.
+
+### Static Methods
+Static methods are methods that do not operate on an instance or the class itself. They are defined using the `@staticmethod` decorator and do not take `self` or `cls` as the first parameter. They are typically used for utility functions related to the class.
+
+### Example: Employee Class
+```python
+class Employee:
+    no_of_employees = 0
+    raise_amount = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = first + "." + last + "@nerdcoder.com"
+        
+        Employee.no_of_employees += 1
+
+    def full_name(self):
+        return f'{self.first} {self.last}'.title()
+        
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amount)
+
+    @classmethod
+    def set_raise_amt(cls, amount):
+        cls.raise_amount = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        first, last, pay = emp_str.split('_')
+        return cls(first, last, pay)
+
+    @staticmethod
+    def is_workday(day):
+        if day == 'Friday' or day == 'Saturday':
+            return False
+        return True
+
+emp_1 = Employee('sohanur', 'rahman', 100000)
+emp_2 = Employee('sonal', 'rahman', 110000)
+
+print(Employee.raise_amount)
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+
+Employee.set_raise_amt(1.05)
+
+print(Employee.raise_amount)
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+
+emp_1.set_raise_amt(1.06)
+print(Employee.raise_amount)
+print(emp_1.raise_amount)
+print(emp_2.raise_amount)
+
+emp_n = Employee.from_string('John_DOE_70000')
+print(emp_n.email)
+
+print(Employee.is_workday('Friday'))
+print(Employee.is_workday('Saturday'))
+```
+
+### Explanation
+- **Class Variables**: `no_of_employees` and `raise_amount` are class variables shared among all instances.
+- **Instance Variables**: `first`, `last`, `pay`, and `email` are instance variables unique to each instance.
+- **Class Methods**: 
+  - `set_raise_amt`: Sets the raise amount for the class.
+  - `from_string`: An alternative constructor that creates an instance from a string.
+- **Static Methods**: 
+  - `is_workday`: Checks if a given day is a workday.
+- **Instance Methods**: 
+  - `full_name`: Returns the full name of the employee.
+  - `apply_raise`: Applies a raise to the employee's pay based on the `raise_amount`.
+
+This example demonstrates how to use class variables, instance variables, class methods, alternative constructors, and static methods in a Python class.
+
+## Difference Table for Class, Static, and Instance Attributes and Methods
+
+| Feature               | Class Attribute/Method                  | Static Method                           | Instance Attribute/Method                |
+|-----------------------|-----------------------------------------|-----------------------------------------|------------------------------------------|
+| Definition            | Defined at the class level              | Defined with `@staticmethod` decorator  | Defined within the `__init__` method     |
+| Access                | Accessed using the class or instance    | Accessed using the class or instance    | Accessed using the instance              |
+| Shared                | Shared among all instances              | Not shared, does not access class/instance | Unique to each instance                  |
+| First Parameter       | `cls` for methods                       | No first parameter                      | `self` for methods                       |
+| Use Case              | Class-wide data or behavior             | Utility functions related to the class  | Instance-specific data or behavior       |
+| Example Attribute     | `class_var = 10`                        | N/A                                     | `self.instance_var = 10`                 |
+| Example Method        | `@classmethod def method(cls):`         | `@staticmethod def method():`           | `def method(self):`                      |
+
+### Example Code
+
+```python
+class MyClass:
+    class_var = 10  # Class Attribute
+
+    def __init__(self, value):
+        self.instance_var = value  # Instance Attribute
+
+    @classmethod
+    def class_method(cls):
+        return cls.class_var  # Class Method
+
+    @staticmethod
+    def static_method():
+        return "Static Method"  # Static Method
+
+    def instance_method(self):
+        return self.instance_var  # Instance Method
+```
+## Inheritance in Python
+
+Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a class to inherit attributes and methods from another class. The class that inherits is called the child or subclass, and the class being inherited from is called the parent or superclass. Inheritance promotes code reusability and establishes a relationship between classes.
+
+### Types of Inheritance
+
+1. **Single Inheritance**: A subclass inherits from a single superclass.
+2. **Multiple Inheritance**: A subclass inherits from multiple superclasses.
+3. **Multilevel Inheritance**: A subclass inherits from another subclass.
+4. **Hierarchical Inheritance**: Multiple subclasses inherit from a single superclass.
+5. **Hybrid Inheritance**: A combination of two or more types of inheritance.
+
+### Example of Single Inheritance
+
+```python
+class Employee:
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = f"{first}.{last}@company.com"
+
+    def full_name(self):
+        return f"{self.first} {self.last}"
+
+class Developer(Employee):
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
+
+dev_1 = Developer('John', 'Doe', 60000, 'Python')
+dev_2 = Developer('Jane', 'Smith', 65000, 'Java')
+
+print(dev_1.email)  # Output: John.Doe@company.com
+print(dev_1.full_name())  # Output: John Doe
+print(dev_1.prog_lang)  # Output: Python
+```
+
+### Example of Multiple Inheritance
+
+```python
+class Employee:
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+class Manager:
+    def __init__(self, department):
+        self.department = department
+
+class TeamLead(Employee, Manager):
+    def __init__(self, first, last, department):
+        Employee.__init__(self, first, last)
+        Manager.__init__(self, department)
+
+lead = TeamLead('Alice', 'Johnson', 'IT')
+print(lead.first)  # Output: Alice
+print(lead.department)  # Output: IT
+```
+
+### Method Resolution Order (MRO)
+
+In the case of multiple inheritance, Python uses the Method Resolution Order (MRO) to determine the order in which base classes are searched when executing a method. The `mro()` method or the `__mro__` attribute can be used to view the MRO of a class.
+
+```python
+print(TeamLead.mro())
+# Output: [<class '__main__.TeamLead'>, <class '__main__.Employee'>, <class '__main__.Manager'>, <class 'object'>]
+```
+
+### Overriding Methods
+
+A subclass can override methods from the superclass to provide a specific implementation.
+
+```python
+class Employee:
+    def work(self):
+        print("Employee working...")
+
+class Developer(Employee):
+    def work(self):
+        print("Developer coding...")
+
+dev = Developer()
+dev.work()  # Output: Developer coding...
+```
+
+### Using `super()`
+
+The `super()` function allows you to call methods from the superclass in the subclass.
+
+```python
+class Employee:
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
+
+    def full_name(self):
+        return f"{self.first} {self.last}"
+
+class Developer(Employee):
+    def __init__(self, first, last, prog_lang):
+        super().__init__(first, last)
+        self.prog_lang = prog_lang
+
+dev = Developer('John', 'Doe', 'Python')
+print(dev.full_name())  # Output: John Doe
+```
+
+Inheritance is a powerful feature in Python that helps in creating a hierarchical relationship between classes, promoting code reusability and maintainability.
+
+
+## Magic or Dunder Methods in Python
+
+Magic methods, also known as dunder (double underscore) methods, are special methods in Python that start and end with double underscores. These methods allow you to define the behavior of your objects for built-in operations such as addition, subtraction, string representation, and more. They are a powerful feature that enables you to make your custom objects behave like built-in types.
+
+### Common Magic Methods
+
+1. `__init__(self, ...)`: Initializes a new instance of a class.
+2. `__str__(self)`: Returns a human-readable string representation of an object.
+3. `__repr__(self)`: Returns an unambiguous string representation of an object, ideally one that could be used to recreate the object.
+4. `__len__(self)`: Returns the length of the object.
+5. `__call__(self, ...)`: Makes an instance callable like a function.
+
+### Example: Employee Class with Magic Methods
+
+Below is an example of an `Employee` class that demonstrates the use of several magic methods:
+
+```python
+class Employee:
+    def __init__(self, name):
+        self.name = name
+        
+    def __len__(self):
+        i = 0
+        for c in self.name:
+            i += 1
+        return i
+    
+    def __str__(self):
+        return f'The name of the employee is {self.name} str.'
+    
+    def __call__(self, *args, **kwds):
+        print(f'Employee name is {self.name}')
+    
+    def __repr__(self):
+        return f"Employee('{self.name}')"
+        
+e = Employee("Hridoy")
+print(e)          # Output: The name of the employee is Hridoy str.
+print(str(e))     # Output: The name of the employee is Hridoy str.
+print(repr(e))    # Output: Employee('Hridoy')
+e()               # Output: Employee name is Hridoy
+```
+
+### Explanation
+
+- `__init__(self, name)`: Initializes the `Employee` object with a `name` attribute.
+- `__len__(self)`: Returns the length of the employee's name.
+- `__str__(self)`: Returns a human-readable string representation of the `Employee` object.
+- `__call__(self, *args, **kwds)`: Makes the `Employee` instance callable, printing the employee's name.
+- `__repr__(self)`: Returns an unambiguous string representation of the `Employee` object.
+
+Magic methods enhance the functionality and usability of your custom classes, making them more intuitive and easier to work with.
 
 
 
