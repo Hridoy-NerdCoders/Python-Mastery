@@ -7,33 +7,6 @@ Python is a high-level, interpreted programming language known for its readabili
 
 Python is not a fully object-oriented programming language, but it supports object-oriented programming (OOP) principles such as inheritance, polymorphism, encapsulation, and abstraction. It also supports procedural and functional programming paradigms.
 
-### Built-in Data Types and Classes
-
-In Python, everything is an object, including built-in data types:
-- **Integers**: Instances of the `int` class.
-- **Strings**: Instances of the `str` class.
-- **Lists**: Instances of the `list` class.
-- **Tuples**: Instances of the `tuple` class.
-- **Dictionaries**: Instances of the `dict` class.
-
-### Example: Using Built-in Data Types as Classes
-```python
-# Integer
-num = 10
-print(type(num))  # Output: <class 'int'>
-
-# String
-message = "Hello, World!"
-print(type(message))  # Output: <class 'str'>
-
-# List
-courses = ['Python', 'Java', 'C++']
-print(type(courses))  # Output: <class 'list'>
-
-# Dictionary
-student = {'name': 'Hridoy', 'age': 23}
-print(type(student))  # Output: <class 'dict'>
-```
 
 ## Why Python is Not a Fully Object-Oriented Programming Language
 
@@ -72,7 +45,58 @@ Fully object-oriented languages enforce OOP principles throughout the language:
 | C#       | Mostly                | Has primitive data types, uses struct types |
 
 In summary, while Python supports OOP principles, its flexibility in supporting multiple paradigms means it is not considered fully object-oriented. Java and C# are close to being fully object-oriented but have some exceptions with primitive data types. C++ is not fully object-oriented due to its support for multiple programming paradigms.
+### Built-in Data Types and Classes
 
+In Python, everything is an object, including built-in data types:
+- **Integers**: Instances of the `int` class.
+- **Strings**: Instances of the `str` class.
+- **Lists**: Instances of the `list` class.
+- **Tuples**: Instances of the `tuple` class.
+- **Dictionaries**: Instances of the `dict` class.
+- **Floats**: Instances of the `float` class.
+- **Complex Numbers**: Instances of the `complex` class.
+- **Booleans**: Instances of the `bool` class.
+- **Sets**: Instances of the `set` class.
+
+
+### Example: Using Built-in Data Types as Classes
+```python
+# Integer
+num = 10
+print(type(num))  # Output: <class 'int'>
+
+# String
+message = "Hello, World!"
+print(type(message))  # Output: <class 'str'>
+
+# List
+courses = ['Python', 'Java', 'C++']
+print(type(courses))  # Output: <class 'list'>
+
+# Tuple
+coordinates = (10, 20)
+print(type(coordinates))  # Output: <class 'tuple'>
+
+# Dictionary
+student = {'name': 'Hridoy', 'age': 23}
+print(type(student))  # Output: <class 'dict'>
+
+# Float
+pi = 3.14159
+print(type(pi))  # Output: <class 'float'>
+
+# Complex Number
+complex_num = 1 + 2j
+print(type(complex_num))  # Output: <class 'complex'>
+
+# Boolean
+is_valid = True
+print(type(is_valid))  # Output: <class 'bool'>
+
+# Set
+unique_numbers = {1, 2, 3}
+print(type(unique_numbers))  # Output: <class 'set'>
+```
 
 ## Python String Operations
 
@@ -538,7 +562,7 @@ empty_set = set()
 | Common Operations   | Creating, accessing, slicing, modifying, reversing, sorting, and other list-specific methods | Creating and accessing                     | Membership tests, eliminating duplicates, union, intersection, difference |
 | Use Case            | General-purpose, flexible collections      | Fixed collections of items                 | Unique collections, set operations        |
 | Empty Collections   | `empty_list = []` or `empty_list = list()` | `empty_tuple = ()` or `empty_tuple = tuple()` | `empty_set = set()` (not `{}` which creates a dictionary) |
-```
+
 
 
 ## Dictionary Operations
@@ -903,6 +927,267 @@ def course_info(*args, **kwargs):
   - `*args`: Variable length argument list.
   - `**kwargs`: Arbitrary keyword arguments.
 
+# Function Arguments and Return Statement
+
+## Types of Function Arguments in Python
+There are four types of arguments that we can provide in a function:
+
+1. Default Arguments
+2. Keyword Arguments
+3. Variable-length Arguments
+4. Required Arguments
+
+---
+
+## 1. Default Arguments
+We can provide a default value while creating a function. This way, the function assumes a default value even if a value is not provided in the function call for that argument.
+
+### Example:
+```python
+def name(fname, mname="Jhon", lname="Whatson"):
+    print("Hello,", fname, mname, lname)
+name("Amy")
+```
+### Output:
+```
+Hello, Amy Jhon Whatson
+```
+
+---
+
+## 2. Keyword Arguments
+We can provide arguments with `key = value`, allowing the interpreter to recognize the arguments by the parameter name. The order in which the arguments are passed does not matter.
+
+### Example:
+```python
+def name(fname, mname, lname):
+    print("Hello,", fname, mname, lname)
+name(mname="Peter", lname="Wesker", fname="Jade")
+```
+### Output:
+```
+Hello, Jade Peter Wesker
+```
+
+---
+
+## 3. Required Arguments
+If we don’t pass the arguments with a `key = value` syntax, then it is necessary to pass the arguments in the correct positional order, and the number of arguments passed should match the actual function definition.
+
+### Example 1: When the number of arguments passed does not match the actual function definition.
+```python
+def name(fname, mname, lname):
+    print("Hello,", fname, mname, lname)
+name("Peter", "Quill")
+```
+### Output:
+```
+TypeError: name() missing 1 required positional argument: 'lname'
+```
+
+### Example 2: When the number of arguments passed matches the actual function definition.
+```python
+def name(fname, mname, lname):
+    print("Hello,", fname, mname, lname)
+name("Peter", "Ego", "Quill")
+```
+### Output:
+```
+Hello, Peter Ego Quill
+```
+
+---
+
+## 4. Variable-length Arguments
+Sometimes, we may need to pass more arguments than those defined in the actual function. This can be done using variable-length arguments.
+
+### Two ways to achieve this:
+
+### a) Arbitrary Arguments (`*args`)
+While creating a function, pass a `*` before the parameter name. The function accesses the arguments by processing them as a tuple.
+
+#### Example:
+```python
+def name(*name):
+    print("Hello,", name[0], name[1], name[2])
+name("James", "Buchanan", "Barnes")
+```
+#### Output:
+```
+Hello, James Buchanan Barnes
+```
+
+### b) Keyword Arbitrary Arguments (`**kwargs`)
+While creating a function, pass `**` before the parameter name. The function accesses the arguments by processing them as a dictionary.
+
+#### Example:
+```python
+def name(**name):
+    print("Hello,", name["fname"], name["mname"], name["lname"])
+name(mname="Buchanan", lname="Barnes", fname="James")
+```
+#### Output:
+```
+Hello, James Buchanan Barnes
+```
+
+### Example:
+```python
+def summation(*numbers):
+    sum = 0
+    for num in numbers:
+        sum += num
+        
+    return sum
+
+print(summation(1,2,3,4,5,6,7,8,9))
+print(summation(1,2,3,4,5))
+
+def personal_info(**infos):
+    return f"{infos['fname']} {infos['lname']} is a {infos['occupation']}"
+
+print(personal_info(fname = 'Sohanur',occupation = 'Software Engineer',lname = 'Rahman'))
+
+#output:
+# 45
+# 15
+# Sohanur Rahman is an Software Engineer
+```
+
+---
+
+## Return Statement
+The `return` statement is used to return the value of an expression back to the calling function.
+
+### Example:
+```python
+def name(fname, mname, lname):
+    return "Hello, " + fname + " " + mname + " " + lname
+print(name("James", "Buchanan", "Barnes"))
+```
+### Output:
+```
+Hello, James Buchanan Barnes
+```
+## Magic/Dunder Methods in Python
+
+These are special methods that you can define in your classes, and when invoked, they give you a powerful way to manipulate objects and their behaviour.
+
+Magic methods, also known as “dunders” from the double underscores surrounding their names, are powerful tools that allow you to customize the behaviour of your classes. They are used to implement special methods such as the addition, subtraction and comparison operators, as well as some more advanced techniques like descriptors and properties.
+
+### Commonly Used Magic Methods in Python
+
+#### `__init__` method
+The `__init__` method is a special method that is automatically invoked when you create a new instance of a class. This method is responsible for setting up the object’s initial state, and it is where you would typically define any instance variables that you need. Also called the "constructor".
+
+#### `__str__` and `__repr__` methods
+The `__str__` and `__repr__` methods are both used to convert an object to a string representation. The `__str__` method is used when you want to print out an object, while the `__repr__` method is used when you want to get a string representation of an object that can be used to recreate the object.
+
+#### `__len__` method
+The `__len__` method is used to get the length of an object. This is useful when you want to be able to find the size of a data structure, such as a list or dictionary.
+
+#### `__call__` method
+The `__call__` method is used to make an object callable, meaning that you can pass it as a parameter to a function and it will be executed when the function is called. This is an incredibly powerful tool that allows you to create objects that behave like functions.
+
+These are just a few of the many magic methods available in Python. They are incredibly powerful tools that allow you to customize the behaviour of your objects, and can make your code much cleaner and easier to understand. So if you’re looking for a way to take your Python code to the next level, take some time to learn about these magic methods.
+
+### Example: Employee Class with Magic Methods
+
+Below is an example of an `Employee` class that demonstrates the use of several magic methods:
+
+```python
+class Employee:
+    def __init__(self, name):
+        self.name = name
+        
+    def __len__(self):
+        i = 0
+        for c in self.name:
+            i += 1
+        return i
+    
+    def __str__(self):
+        return f'The name of the employee is {self.name} str.'
+    
+    def __call__(self, *args, **kwds):
+        print(f'Employee name is {self.name}')
+    
+    def __repr__(self):
+        return f"Employee('{self.name}')"
+        
+e = Employee("Hridoy")
+print(e)          # Output: The name of the employee is Hridoy str.
+print(str(e))     # Output: The name of the employee is Hridoy str.
+print(repr(e))    # Output: Employee('Hridoy')
+e()               # Output: Employee name is Hridoy
+```
+
+### Explanation
+
+- `__init__(self, name)`: Initializes the `Employee` object with a `name` attribute.
+- `__len__(self)`: Returns the length of the employee's name.
+- `__str__(self)`: Returns a human-readable string representation of the `Employee` object.
+- `__call__(self, *args, **kwds)`: Makes the `Employee` instance callable, printing the employee's name.
+- `__repr__(self)`: Returns an unambiguous string representation of the `Employee` object.
+
+Magic methods enhance the functionality and usability of your custom classes, making them more intuitive and easier to work with.
+
+
+
+## Lambda Functions in Python
+
+In Python, a lambda function is a small anonymous function without a name. It is defined using the `lambda` keyword and has the following syntax:
+
+```python
+lambda arguments: expression
+```
+
+Lambda functions are often used in situations where a small function is required for a short period of time. They are commonly used as arguments to higher-order functions, such as `map`, `filter`, and `reduce`.
+
+Here is an example of how to use a lambda function:
+
+### Function to Double the Input
+
+```python
+# Regular function to double the input
+def double(x):
+    return x * 2
+
+# Lambda function to double the input
+double_lambda = lambda x: x * 2
+```
+
+The above lambda function has the same functionality as the `double` function defined earlier. However, the lambda function is anonymous, as it does not have a name.
+
+### Lambda Function with Multiple Arguments
+
+Lambda functions can have multiple arguments, just like regular functions. Here is an example of a lambda function with multiple arguments:
+
+```python
+# Regular function to calculate the product of two numbers
+def multiply(x, y):
+    return x * y
+
+# Lambda function to calculate the product of two numbers
+multiply_lambda = lambda x, y: x * y
+```
+
+### Lambda Function with a Print Statement
+
+Lambda functions can also include multiple statements, but they are limited to a single expression. For example:
+
+```python
+# Lambda function to calculate the product of two numbers,
+# with an additional print statement
+product_lambda = lambda x, y: print(f'{x} * {y} = {x * y}')
+```
+
+In the above example, the lambda function includes a print statement, but it is still limited to a single expression.
+
+### Usage with Higher-Order Functions
+
+Lambda functions are often used in conjunction with higher-order functions, such as `map`, `filter`, and `reduce`, which we will look into later.
+
 
 ### Example: Days in a Month
 This example demonstrates how to determine the number of days in a given month of a specific year, accounting for leap years.
@@ -1157,8 +1442,60 @@ print(os.path.splitext('/tmp/test.txt'))
 print(dir(os.path))
 ```
 
+## The `if __name__ == "__main__"` Idiom in Python
 
-## This script demonstrates the LEGB (Local, Enclosing, Global, Built-in) rule in Python, which is the order in which Python resolves variable names.
+The `if __name__ == "__main__"` idiom is a common pattern used in Python scripts to determine whether the script is being run directly or being imported as a module into another script.
+
+### Understanding `__name__` and `__main__`
+
+In Python, the `__name__` variable is a built-in variable that is automatically set to the name of the current module. When a Python script is run directly, the `__name__` variable is set to the string `"__main__"`. When the script is imported as a module into another script, the `__name__` variable is set to the name of the module.
+
+### Example Usage
+
+Here's an example of how the `if __name__ == "__main__"` idiom can be used:
+
+```python
+def main():
+    # Code to be run when the script is run directly
+    print("Running script directly")
+
+if __name__ == "__main__":
+    main()
+```
+
+In this example, the `main` function contains the code that should be run when the script is run directly. The `if` statement at the bottom checks whether the `__name__` variable is equal to `"__main__"`. If it is, the `main` function is called.
+
+### Why is it Useful?
+
+This idiom is useful because it allows you to reuse code from a script by importing it as a module into another script, without running the code in the original script. For example, consider the following script:
+
+```python
+def main():
+    print("Running script directly")
+
+if __name__ == "__main__":
+    main()
+```
+
+If you run this script directly, it will output "Running script directly". However, if you import it as a module into another script and call the `main` function from the imported module, it will not output anything:
+
+```python
+import script
+script.main()  # Output: "Running script directly"
+```
+
+This can be useful if you have code that you want to reuse in multiple scripts, but you only want it to run when the script is run directly and not when it's imported as a module.
+
+### Is it a Necessity?
+
+It's important to note that the `if __name__ == "__main__"` idiom is not required to run a Python script. You can still run a script without it by simply calling the functions or running the code you want to execute directly. However, the `if __name__ == "__main__"` idiom can be a useful tool for organizing and separating code that should be run directly from code that should be imported and used as a module.
+
+### Summary
+
+In summary, the `if __name__ == "__main__"` idiom is a common pattern used in Python scripts to determine whether the script is being run directly or being imported as a module into another script. It allows you to reuse code from a script by importing it as a module into another script, without running the code in the original script.
+
+
+## Scopes: the LEGB (Local, Enclosing, Global, Built-in) rule in Python, which is the order in which Python resolves variable names.
 
 1. **Local**: Variables defined within a function.
 2. **Enclosing**: Variables defined in the local scope of enclosing functions.
@@ -1672,6 +2009,78 @@ except ValueError as e:
 
 Manually raising exceptions helps handle errors effectively and makes your code more robust.
 
+## Basics of Generator Functions in Python
+
+Generator functions allow you to declare a function that behaves like an iterator. They allow you to iterate through a set of values, but unlike lists, they do not store all the values in memory. Instead, they generate the values on the fly, which makes them more memory efficient.
+
+### Defining a Generator Function
+
+A generator function is defined like a normal function, but instead of returning a value, it uses the `yield` keyword to yield a value. Here is an example:
+
+```python
+def simple_generator():
+    yield 1
+    yield 2
+    yield 3
+```
+
+### Using a Generator Function
+
+You can use a generator function in a loop to get the values one by one:
+
+```python
+gen = simple_generator()
+
+print(next(gen))  # Output: 1
+print(next(gen))  # Output: 2
+print(next(gen))  # Output: 3
+```
+
+### Iterating Through a Generator
+
+You can also use a generator in a `for` loop:
+
+```python
+for value in simple_generator():
+    print(value)
+```
+
+### Example: Fibonacci Sequence
+
+Here is an example of a generator function that generates the Fibonacci sequence:
+
+```python
+def fibonacci_sequence(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+# Using the generator
+for number in fibonacci_sequence(10):
+    print(number)
+```
+
+### Advantages of Generators
+
+- **Memory Efficiency**: Generators do not store all values in memory, making them more memory efficient.
+- **Lazy Evaluation**: Values are generated only when needed, which can improve performance for large datasets.
+- **Readable Code**: Generators can make your code more readable and concise.
+
+### Generator Expressions
+
+Generator expressions provide a concise way to create generators. They are similar to list comprehensions but use parentheses instead of square brackets:
+
+```python
+gen_exp = (x * x for x in range(10))
+
+for value in gen_exp:
+    print(value)
+```
+
+### Conclusion
+
+Generator functions and expressions are powerful tools in Python that allow you to work with large datasets efficiently. They provide a way to generate values on the fly, saving memory and improving performance.
 
 ## Generating Squares of Numbers
 
@@ -1721,242 +2130,644 @@ print(list(my_nums))
 ```
 
 ## Python Object-Oriented Programming
+## Python Class and Objects
 
-### Creating a Class and Instances
+A **class** is a blueprint or a template for creating objects, providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods). User-defined objects are created using the `class` keyword.
+
+### Creating a Class:
+Let us now create a class using the `class` keyword.
 
 ```python
-# Define a class named Employee
-class Employee:
-    # Initialize the class with first name, last name, and pay
-    def __init__(self, first, last, pay):
-        self.first = first
-        self.last = last
-        self.pay = pay
-        self.email = first + "." + last + "@nerdcoder.com"
+class Details:
+    name = "Rohan"
+    age = 20
+```
+
+### Creating an Object:
+An **object** is an instance of the class used to access the properties of the class. Now, let's create an object of the class.
+
+#### Example:
+```python
+obj1 = Details()
+```
+
+### Accessing Class Properties:
+Now we can print values using the created object:
+
+```python
+class Details:
+    name = "Rohan"
+    age = 20
+
+obj1 = Details()
+print(obj1.name)
+print(obj1.age)
+```
+
+### Output:
+```
+Rohan
+20
+```
+
+## Self Parameter
+
+The **self** parameter is a reference to the current instance of the class and is used to access variables that belong to the class.
+
+It must be provided as an extra parameter inside the method definition.
+
+### Example:
+```python
+class Details:
+    name = "Rohan"
+    age = 20
     
-    # Method to return the full name of the employee
-    def full_name(self):
-        return f'{self.first} {self.last}'.title()
+    def desc(self):
+        print("My name is", self.name, "and I'm", self.age, "years old.")
 
-# Create instances of the Employee class
-emp_1 = Employee('sohanur', 'rahman', 100000)
-emp_2 = Employee('sonal', 'rahman', 110000)
-
-# Print email addresses of the employees
-print(emp_1.email)  # Output: sohanur.rahman@nerdcoder.com
-print(emp_2.email)  # Output: sonal.rahman@nerdcoder.com
-
-# Print full names of the employees
-print(emp_1.full_name())  # Output: Sohanur Rahman
-# The above line is equivalent to:
-print(Employee.full_name(emp_1))  # Output: Sohanur Rahman
-print(emp_2.full_name())  # Output: Sonal Rahman
+obj1 = Details()
+obj1.desc()
 ```
 
-### Explanation
+### Output:
+```
+My name is Rohan and I'm 20 years old.
+```
 
-- **Class Definition**: The `Employee` class is defined with an `__init__` method to initialize the attributes `first`, `last`, `pay`, and `email`.
-- **Instance Creation**: Instances `emp_1` and `emp_2` are created with specific values for `first`, `last`, and `pay`.
-- **Method Definition**: The `full_name` method returns the full name of the employee.
-- **Accessing Attributes and Methods**: The email addresses and full names of the employees are accessed and printed.
 
-### Employee Class Example
 
-This example demonstrates the creation and usage of an `Employee` class in Python. The class includes class variables, instance variables, and methods.
+### Inheritance from the `object` Class
+
+In Python, all classes are inherently inherited from the `object` class, either directly or indirectly. This means every class you create is a subclass of `object`, which is the most base type.
 
 ```python
-class Employee:
-    no_of_employees = 0
-    raise_amount = 1.04
-
-    def __init__(self, first, last, pay):
-        self.first = first
-        self.last = last
-        self.pay = pay
-        self.email = first + "." + last + "@nerdcoder.com"
-        
-        Employee.no_of_employees += 1
-
-    def full_name(self):
-        return f'{self.first} {self.last}'.title()
-        
-    def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
-
-emp_1 = Employee('sohanur', 'rahman', 100000)
-emp_2 = Employee('sonal', 'rahman', 110000)
-
-print(emp_1.pay)
-emp_1.apply_raise()
-print(emp_1.pay)
-
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-print(Employee.raise_amount)
-
-print(emp_1.__dict__)
-print(Employee.__dict__)
-
-Employee.raise_amount = 1.05
-
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-print(Employee.raise_amount)
-
-emp_1.raise_amount = 1.06
-
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-print(Employee.raise_amount)
-
-print(emp_1.__dict__)
-print(Employee.no_of_employees)
+class MyClass(object):
+    pass
 ```
 
-### Explanation
-
-- **Class Variables**: `no_of_employees` and `raise_amount` are class variables shared among all instances.
-- **Instance Variables**: `first`, `last`, `pay`, and `email` are instance variables unique to each instance.
-- **Methods**: 
-  - `__init__`: Initializes the instance variables and increments the employee count.
-  - `full_name`: Returns the full name of the employee.
-  - `apply_raise`: Applies a raise to the employee's pay based on the `raise_amount`.
-
-### Output
-
-The code demonstrates the following:
-- Creating instances of the `Employee` class.
-- Accessing and modifying instance and class variables.
-- Applying a raise to an employee's pay.
-- Printing the dictionary representation of an instance and the class.
-- Modifying the class variable `raise_amount` and observing its effect on instances.
-- Overriding the class variable `raise_amount` for a specific instance.
-
-## Class Variables, Class Methods, Alternative Constructors, Instance Variables, and Static Methods
-
-In Python, classes can have different types of variables and methods that serve various purposes. Here's an explanation of each:
-
-### Class Variables
-Class variables are shared among all instances of a class. They are defined within the class but outside any instance methods. They are typically used to store data that is common to all instances of the class.
-
-### Instance Variables
-Instance variables are unique to each instance of a class. They are defined within the `__init__` method and are used to store data that is specific to each instance.
-
-### Class Methods
-Class methods are methods that operate on the class itself rather than on instances of the class. They are defined using the `@classmethod` decorator and take `cls` as the first parameter, which represents the class.
-
-### Alternative Constructors
-Alternative constructors are class methods that provide additional ways to create instances of a class. They are often used to create instances from different types of input data.
-
-### Static Methods
-Static methods are methods that do not operate on an instance or the class itself. They are defined using the `@staticmethod` decorator and do not take `self` or `cls` as the first parameter. They are typically used for utility functions related to the class.
-
-### Example: Employee Class
-```python
-class Employee:
-    no_of_employees = 0
-    raise_amount = 1.04
-
-    def __init__(self, first, last, pay):
-        self.first = first
-        self.last = last
-        self.pay = pay
-        self.email = first + "." + last + "@nerdcoder.com"
-        
-        Employee.no_of_employees += 1
-
-    def full_name(self):
-        return f'{self.first} {self.last}'.title()
-        
-    def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
-
-    @classmethod
-    def set_raise_amt(cls, amount):
-        cls.raise_amount = amount
-
-    @classmethod
-    def from_string(cls, emp_str):
-        first, last, pay = emp_str.split('_')
-        return cls(first, last, pay)
-
-    @staticmethod
-    def is_workday(day):
-        if day == 'Friday' or day == 'Saturday':
-            return False
-        return True
-
-emp_1 = Employee('sohanur', 'rahman', 100000)
-emp_2 = Employee('sonal', 'rahman', 110000)
-
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-
-Employee.set_raise_amt(1.05)
-
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-
-emp_1.set_raise_amt(1.06)
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-
-emp_n = Employee.from_string('John_DOE_70000')
-print(emp_n.email)
-
-print(Employee.is_workday('Friday'))
-print(Employee.is_workday('Saturday'))
-```
-
-### Explanation
-- **Class Variables**: `no_of_employees` and `raise_amount` are class variables shared among all instances.
-- **Instance Variables**: `first`, `last`, `pay`, and `email` are instance variables unique to each instance.
-- **Class Methods**: 
-  - `set_raise_amt`: Sets the raise amount for the class.
-  - `from_string`: An alternative constructor that creates an instance from a string.
-- **Static Methods**: 
-  - `is_workday`: Checks if a given day is a workday.
-- **Instance Methods**: 
-  - `full_name`: Returns the full name of the employee.
-  - `apply_raise`: Applies a raise to the employee's pay based on the `raise_amount`.
-
-This example demonstrates how to use class variables, instance variables, class methods, alternative constructors, and static methods in a Python class.
-
-## Difference Table for Class, Static, and Instance Attributes and Methods
-
-| Feature               | Class Attribute/Method                  | Static Method                           | Instance Attribute/Method                |
-|-----------------------|-----------------------------------------|-----------------------------------------|------------------------------------------|
-| Definition            | Defined at the class level              | Defined with `@staticmethod` decorator  | Defined within the `__init__` method     |
-| Access                | Accessed using the class or instance    | Accessed using the class or instance    | Accessed using the instance              |
-| Shared                | Shared among all instances              | Not shared, does not access class/instance | Unique to each instance                  |
-| First Parameter       | `cls` for methods                       | No first parameter                      | `self` for methods                       |
-| Use Case              | Class-wide data or behavior             | Utility functions related to the class  | Instance-specific data or behavior       |
-| Example Attribute     | `class_var = 10`                        | N/A                                     | `self.instance_var = 10`                 |
-| Example Method        | `@classmethod def method(cls):`         | `@staticmethod def method():`           | `def method(self):`                      |
-
-### Example Code
+Even if you don't explicitly inherit from `object`, Python does it implicitly:
 
 ```python
 class MyClass:
-    class_var = 10  # Class Attribute
+    pass
+```
 
+
+## Constructors in Python
+
+A constructor is a special method in a class used to create and initialize an object of a class. Constructors are invoked automatically when an object of a class is created. The main purpose of a constructor is to initialize or assign values to the data members of that class. It cannot return any value other than `None`.
+
+### Syntax of Python Constructor
+
+```python
+def __init__(self):
+    # initializations
+```
+
+`__init__` is one of the reserved functions in Python. In Object-Oriented Programming, it is known as a constructor.
+
+### Types of Constructors in Python
+
+1. **Parameterized Constructor**
+2. **Default Constructor**
+
+### Parameterized Constructor in Python
+
+When the constructor accepts arguments along with `self`, it is known as a parameterized constructor. These arguments can be used inside the class to assign values to the data members.
+
+#### Example:
+
+```python
+class Details:
+    def __init__(self, animal, group):
+        self.animal = animal
+        self.group = group
+
+obj1 = Details("Crab", "Crustaceans")
+print(obj1.animal, "belongs to the", obj1.group, "group.")
+```
+
+**Output:**
+
+```
+Crab belongs to the Crustaceans group.
+```
+
+### Default Constructor in Python
+
+When the constructor doesn't accept any arguments from the object and has only one argument, `self`, in the constructor, it is known as a default constructor.
+
+#### Example:
+
+```python
+class Details:
+    def __init__(self):
+        print("animal Crab belongs to Crustaceans group")
+
+obj1 = Details()
+```
+
+**Output:**
+
+```
+animal Crab belongs to Crustaceans group
+```
+
+```python
+class Person:
+    def __init__(self,name,occupation):
+        print('Constructor is Called!')
+        self.name = name
+        self.occupation = occupation
+    
+    def info(self):
+        print(f'{self.name} is a {self.occupation}')
+        
+a = Person(name='Hridoy',occupation='Python Developer')
+# a.name = 'Dio'
+# a.occupation = 'Python Developer'
+a.info() 
+
+b = Person(name='Druv', occupation='HR')
+b.info()       
+```
+
+# Python Decorators
+
+## Introduction
+Python decorators are a powerful and versatile tool that allow you to **modify the behavior of functions and methods**. They extend the functionality of a function or method **without modifying its source code**.
+
+A decorator is a function that **takes another function as an argument and returns a new function** that modifies the behavior of the original function. The new function is often referred to as a "decorated" function.
+
+---
+
+## Syntax of Decorators
+The basic syntax for using a decorator is as follows:
+
+```python
+@decorator_function
+def my_function():
+    pass
+```
+
+The `@decorator_function` notation is just a shorthand for the following code:
+
+```python
+def my_function():
+    pass
+
+my_function = decorator_function(my_function)
+```
+
+Decorators are often used to **add functionality** to functions and methods, such as logging, memoization, and access control.
+
+---
+
+## Practical Use Case
+One common use of decorators is to **add logging** to a function. For example, you could use a decorator to log the arguments and return value of a function each time it is called:
+
+```python
+import logging
+
+def log_function_call(func):
+    def decorated(*args, **kwargs):
+        logging.info(f"Calling {func.__name__} with args={args}, kwargs={kwargs}")
+        result = func(*args, **kwargs)
+        logging.info(f"{func.__name__} returned {result}")
+        return result
+    return decorated
+
+@log_function_call
+def my_function(a, b):
+    return a + b
+```
+
+### Explanation
+- The `log_function_call` decorator takes a function as an argument.
+- It **wraps** the original function (`func`) inside a new function (`decorated`).
+- Before calling `func`, it logs the function call details.
+- After execution, it logs the return value.
+- The new function replaces the original one.
+
+---
+
+## Conclusion
+Decorators are a **powerful and flexible feature** in Python that can be used to **add functionality** to functions and methods **without modifying their source code**. They help in:
+
+- **Separating concerns**
+- **Reducing code duplication**
+- **Improving readability and maintainability**
+
+Python decorators are widely used for:
+- **Logging**
+- **Memoization (caching)**
+- **Access control**
+- **Authentication and authorization**
+- **Performance measurement**
+
+By using decorators, you can make your code **more readable, maintainable, and extendable**. 🚀
+
+
+
+## Getters and Setters in Python
+
+### Getters
+Getters in Python are methods that are used to access the values of an object's properties. They are used to return the value of a specific property and are typically defined using the `@property` decorator. 
+
+Here is an example of a simple class with a getter method:
+
+```python
+class MyClass:
     def __init__(self, value):
-        self.instance_var = value  # Instance Attribute
+        self._value = value
+    
+    @property
+    def value(self):
+        return self._value
+```
+
+In this example, the `MyClass` class has a single property, `_value`, which is initialized in the `__init__` method. The `value` method is defined as a getter using the `@property` decorator and is used to return the value of the `_value` property.
+
+To use the getter, we can create an instance of the `MyClass` class and then access the `value` property as if it were an attribute:
+
+```python
+>>> obj = MyClass(10)
+>>> obj.value
+10
+```
+
+### Setters
+It is important to note that getters do not take any parameters and we cannot set the value through a getter method. For that, we need a setter method, which can be added by decorating the method with `@property_name.setter`.
+
+Here is an example of a class with both a getter and a setter:
+
+```python
+class MyClass:
+    def __init__(self, value):
+        self._value = value
+    
+    @property
+    def value(self):
+        return self._value
+    
+    @value.setter
+    def value(self, new_value):
+        self._value = new_value
+```
+
+We can use the setter method like this:
+
+```python
+>>> obj = MyClass(10)
+>>> obj.value = 20
+>>> obj.value
+20
+```
+
+## Defining a Setter for a Property in Python
+
+In Python, if you want to define a setter for a property, you must first define the property itself, which typically includes a getter. However, if you only want a setter and no getter, you can raise an exception in the getter to prevent access.
+
+### Example
+
+```python
+class MyClass:
+    def __init__(self):
+        self._value = None
+
+    @property
+    def value(self):
+        raise AttributeError("This property is write-only")
+
+    @value.setter
+    def value(self, new_value):
+        self._value = new_value
+
+obj = MyClass()
+obj.value = 10  # This works
+print(obj.value)  # This raises an AttributeError: This property is write-only
+```
+
+In this example, the `value` property has a setter but no usable getter. Attempting to access the property will raise an `AttributeError`, indicating that the property is write-only.
+
+### Conclusion
+In conclusion, getters are a convenient way to access the values of an object's properties while keeping the internal representation of the property hidden. This can be useful for encapsulation and data validation.
+
+## Access Specifiers/Modifiers in Python
+
+Access specifiers or access modifiers in Python are used to **limit access** to class variables and methods, especially when implementing **inheritance**.
+
+### Types of Access Specifiers:
+
+1. **Public Access Modifier**
+2. **Private Access Modifier**
+3. **Protected Access Modifier**
+
+---
+
+### **Public Access Modifier**
+
+By default, all variables and methods in Python are **public**, meaning they can be accessed from outside the class.
+
+#### Example:
+
+```python
+class Student:
+    def __init__(self, age, name):
+        self.age = age  # Public variable
+        self.name = name  # Public variable
+
+obj = Student(22, "Hridoy")
+print(obj.age)
+print(obj.name)
+```
+
+**Output:**
+
+```
+22
+Hridoy
+```
+
+---
+
+### **Private Access Modifier**
+
+Private members **cannot** be accessed outside the class. Python uses a **double underscore (\_\_)** prefix to indicate private variables.
+
+#### Example:
+
+```python
+class Student:
+    def __init__(self, age, name):
+        self.__age = age  # Private variable
+
+    def __private_method(self):  # Private method
+        print("This is a private method")
+
+obj = Student(21, "Harry")
+print(obj.__age)  # Throws AttributeError
+```
+
+**Output:**
+
+```
+AttributeError: 'Student' object has no attribute '__age'
+```
+
+Private members **cannot be inherited** by child classes.
+
+#### **Name Mangling**
+
+Python uses **name mangling** to avoid accidental access to private members by renaming them internally.
+
+```python
+class MyClass:
+    def __init__(self):
+        self.__mangled_var = "Mangled!"
+
+obj = MyClass()
+print(obj._MyClass__mangled_var)  # Access using name mangling
+```
+
+**Output:**
+
+```
+Mangled!
+```
+
+---
+
+### **Protected Access Modifier**
+
+A **single underscore (\_)** prefix indicates a **protected** variable or method, which **should** only be accessed within the class or its subclasses.
+
+#### Example:
+
+```python
+class Student:
+    def __init__(self):
+        self._name = "Hridoy"  # Protected variable
+    
+    def _protected_method(self):  # Protected method
+        return "Protected Method"
+
+class Subject(Student):
+    pass
+
+obj = Student()
+obj1 = Subject()
+
+print(obj._name)  # Accessible but not recommended
+print(obj._protected_method())
+print(obj1._name)  # Accessible in subclass
+print(obj1._protected_method())
+```
+
+**Output:**
+
+```
+Hridoy
+Protected Method
+Hridoy
+Protected Method
+```
+
+---
+
+### **Summary**
+
+| Access Specifier | Syntax            | Accessible Outside Class?       | Inherited? |
+| ---------------- | ----------------- | ------------------------------- | ---------- |
+| **Public**       | `self.var_name`   | ✅ Yes                           | ✅ Yes      |
+| **Private**      | `self.__var_name` | ❌ No (except via name mangling) | ❌ No       |
+| **Protected**    | `self._var_name`  | ⚠️ Yes (not recommended)        | ✅ Yes      |
+
+Using access specifiers wisely improves **encapsulation**, **security**, and **maintainability** of the code.
+
+
+
+# Static Methods in Python
+
+Static methods in Python are methods that belong to a class rather than an instance of the class. They are defined using the `@staticmethod` decorator and do not have access to the instance of the class (i.e., they do not take `self` as a parameter). Static methods are called on the class itself, not on an instance of the class. They are often used to create utility functions that do not need access to instance data.
+
+## Example
+
+Below is an example of a static method in a `Math` class:
+
+```python
+class Math:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+# Calling the static method on the class itself
+result = Math.add(1, 2)
+print(result)  # Output: 3
+```
+
+## Instance vs Class Variables
+
+In Python, variables can be defined at the class level or at the instance level. Understanding the difference between these types of variables is crucial for writing efficient and maintainable code.
+
+### Class Variables
+
+Class variables are defined at the class level and are shared among all instances of the class. They are defined outside of any method and are usually used to store information that is common to all instances of the class. For example, a class variable can be used to store the number of instances of a class that have been created.
+
+```python
+class MyClass:
+    class_variable = 0
+    
+    def __init__(self):
+        MyClass.class_variable += 1
+        
+    def print_class_variable(self):
+        print(MyClass.class_variable)
+        
+obj1 = MyClass()
+obj2 = MyClass()
+obj1.print_class_variable()  # Output: 2
+obj2.print_class_variable()  # Output: 2
+```
+
+In the example above, the `class_variable` is shared among all instances of the class `MyClass`. When we create new instances of `MyClass`, the value of `class_variable` is incremented. When we call the `print_class_variable` method on `obj1` and `obj2`, we get the same value of `class_variable`.
+
+### Instance Variables
+
+Instance variables are defined at the instance level and are unique to each instance of the class. They are defined inside the `__init__` method and are usually used to store information that is specific to each instance of the class. For example, an instance variable can be used to store the name of an employee in a class that represents an employee.
+
+```python
+class MyClass:
+    def __init__(self, name):
+        self.name = name
+        
+    def print_name(self):
+        print(self.name)
+
+obj1 = MyClass("John")
+obj2 = MyClass("Jane")
+obj1.print_name()  # Output: John
+obj2.print_name()  # Output: Jane
+```
+
+In the example above, each instance of the class `MyClass` has its own value for the `name` variable. When we call the `print_name` method on `obj1` and `obj2`, we get different values for `name`.
+
+## Class Methods in Python
+
+Class methods are methods that are bound to the class and not the instance of the class. They can modify the class state that applies across all instances of the class. Class methods are defined using the `@classmethod` decorator and take `cls` as the first parameter, which refers to the class itself.
+
+### Example
+
+Here is an example of a class method in a class `Employee`:
+
+```python
+class Employee:
+    company = "Apple"
+    
+    def show(self):
+        print(f"The name is {self.name} and company is {self.company}")
+    
+    @classmethod  
+    def changeCompany(cls, newCompany):
+        cls.company = newCompany
+
+e1 = Employee()
+e1.name = "Hridoy"
+e1.show()  # Output: The name is Hridoy and company is Apple
+e1.changeCompany("Tesla")
+e1.show()  # Output: The name is Hridoy and company is Tesla
+
+print(Employee.company)  # Output: Tesla
+```
+
+Class methods are useful when you need to modify the class state that affects all instances of the class.
+
+
+## Class Methods as Alternative Constructors
+
+In object-oriented programming, the term "constructor" refers to a special type of method that is automatically executed when an object is created from a class. The purpose of a constructor is to initialize the object's attributes, allowing the object to be fully functional and ready to use.
+
+However, there are times when you may want to create an object in a different way, or with different initial values, than what is provided by the default constructor. This is where class methods can be used as alternative constructors.
+
+A class method belongs to the class rather than to an instance of the class. One common use case for class methods as alternative constructors is when you want to create an object from data that is stored in a different format, such as a string or a dictionary. For example, consider a class named `Person` that has two attributes: `name` and `age`. The default constructor for the class might look like this:
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+```
+
+But what if you want to create a `Person` object from a string that contains the person's name and age, separated by a comma? You can define a class method named `from_string` to do this:
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
     @classmethod
-    def class_method(cls):
-        return cls.class_var  # Class Method
-
-    @staticmethod
-    def static_method():
-        return "Static Method"  # Static Method
-
-    def instance_method(self):
-        return self.instance_var  # Instance Method
+    def from_string(cls, string):
+        name, age = string.split(',')
+        return cls(name, int(age))
 ```
+
+Now you can create a `Person` object from a string like this:
+
+```python
+person = Person.from_string("John Doe, 30")
+```
+
+Another common use case for class methods as alternative constructors is when you want to create an object with a different set of default values than what is provided by the default constructor. For example, consider a class named `Rectangle` that has two attributes: `width` and `height`. The default constructor for the class might look like this:
+
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+```
+
+But what if you want to create a `Rectangle` object with a default width of 10 and a default height of 5? You can define a class method named `square` to do this:
+
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    @classmethod
+    def square(cls, size):
+        return cls(size, size)
+```
+
+Now you can create a square rectangle like this:
+
+```python
+rectangle = Rectangle.square(10)
+```
+## Static Methods, Instance Variables, Class Variables, and Class Methods in Python
+
+| Concept                          | Description                                                                                       |
+|----------------------------------|---------------------------------------------------------------------------------------------------|
+| **Static Methods**               | Methods that belong to a class rather than an instance. Defined using `@staticmethod` decorator.   |
+| **Instance Variables**           | Variables defined at the instance level, unique to each instance. Defined inside the `__init__` method. |
+| **Class Variables**              | Variables defined at the class level, shared among all instances. Defined outside any method.     |
+| **Class Methods**                | Methods bound to the class, not the instance. Can modify class state. Defined using `@classmethod` decorator. |
+| **Class Methods as Constructors**| Class methods used to create objects in different ways or with different initial values.          |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Inheritance in Python
 
 Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a class to inherit attributes and methods from another class. The class that inherits is called the child or subclass, and the class being inherited from is called the parent or superclass. Inheritance promotes code reusability and establishes a relationship between classes.
@@ -1971,29 +2782,32 @@ Inheritance is a fundamental concept in object-oriented programming (OOP) that a
 
 ### Example of Single Inheritance
 
+In single inheritance, a subclass inherits from a single superclass. Here is a simple example demonstrating single inheritance in Python:
+
 ```python
-class Employee:
-    def __init__(self, first, last, pay):
-        self.first = first
-        self.last = last
-        self.pay = pay
-        self.email = f"{first}.{last}@company.com"
+# Parent class
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-    def full_name(self):
-        return f"{self.first} {self.last}"
+    def speak(self):
+        print(f"{self.name} makes a sound")
 
-class Developer(Employee):
-    def __init__(self, first, last, pay, prog_lang):
-        super().__init__(first, last, pay)
-        self.prog_lang = prog_lang
+# Child class
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} barks")
 
-dev_1 = Developer('John', 'Doe', 60000, 'Python')
-dev_2 = Developer('Jane', 'Smith', 65000, 'Java')
-
-print(dev_1.email)  # Output: John.Doe@company.com
-print(dev_1.full_name())  # Output: John Doe
-print(dev_1.prog_lang)  # Output: Python
+# Creating an instance of the Dog class
+dog = Dog("Buddy")
+dog.speak()  # Output: Buddy barks
 ```
+
+In this example:
+- The `Animal` class is the parent class with an `__init__` method and a `speak` method.
+- The `Dog` class is the child class that inherits from the `Animal` class and overrides the `speak` method.
+- An instance of the `Dog` class is created, and the `speak` method is called, demonstrating the overridden behavior.
+
 
 ### Example of Multiple Inheritance
 
@@ -2025,6 +2839,394 @@ In the case of multiple inheritance, Python uses the Method Resolution Order (MR
 print(TeamLead.mro())
 # Output: [<class '__main__.TeamLead'>, <class '__main__.Employee'>, <class '__main__.Manager'>, <class 'object'>]
 ```
+## Diamond Problem in Python
+
+The diamond problem is a common issue in multiple inheritance scenarios where a class inherits from two classes that have a common base class. This can create ambiguity in the method resolution order (MRO).
+
+### Example of the Diamond Problem
+
+Consider the following example:
+
+```python
+class A:
+    def method(self):
+        print("Method in A")
+
+class B(A):
+    def method(self):
+        print("Method in B")
+
+class C(A):
+    def method(self):
+        print("Method in C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.method()
+```
+
+In this example:
+- Class `A` is the base class.
+- Classes `B` and `C` inherit from `A`.
+- Class `D` inherits from both `B` and `C`.
+
+### Method Resolution Order (MRO)
+
+Python uses the C3 linearization algorithm to resolve the diamond problem. The MRO ensures that each class is only called once and in a consistent order.
+
+You can view the MRO of a class using the `mro()` method or the `__mro__` attribute:
+
+```python
+print(D.mro())
+# Output: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]
+```
+
+### Explanation
+
+When `d.method()` is called:
+1. Python first looks for the `method` in class `D`.
+2. If not found, it looks in class `B` (the first parent class of `D`).
+3. If not found, it looks in class `C` (the second parent class of `D`).
+4. Finally, it looks in class `A`.
+
+The MRO ensures that the method from class `B` is called first, followed by class `C`, and then class `A`.
+
+### Output
+
+```python
+Method in B
+```
+
+In this case, the method from class `B` is called because it appears first in the MRO.
+
+### Conclusion
+
+The diamond problem is resolved in Python using the C3 linearization algorithm, which ensures a consistent and unambiguous method resolution order. This allows for predictable behavior in multiple inheritance scenarios.
+
+
+## Multilevel Inheritance in Python
+
+Multilevel inheritance is a type of inheritance where a class is derived from another class, which is also derived from another class. This forms a chain of inheritance, where each class inherits properties and methods from its predecessor. It allows for the creation of a hierarchical relationship between classes, promoting code reusability and logical structure.
+
+### Example of Multilevel Inheritance
+
+```python
+# Base class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+# Derived class inheriting from Animal
+class Mammal(Animal):
+    def __init__(self, name, has_fur):
+        super().__init__(name)
+        self.has_fur = has_fur
+
+    def describe(self):
+        fur_status = "has fur" if self.has_fur else "does not have fur"
+        print(f"{self.name} is a mammal and {fur_status}")
+
+# Further derived class inheriting from Mammal
+class Dog(Mammal):
+    def __init__(self, name, has_fur, breed):
+        super().__init__(name, has_fur)
+        self.breed = breed
+
+    def speak(self):
+        print(f"{self.name} barks")
+
+    def describe_breed(self):
+        print(f"{self.name} is a {self.breed}")
+
+# Creating an instance of Dog
+dog = Dog("Buddy", True, "Golden Retriever")
+dog.speak()  # Output: Buddy barks
+dog.describe()  # Output: Buddy is a mammal and has fur
+dog.describe_breed()  # Output: Buddy is a Golden Retriever
+```
+
+In this example:
+- `Animal` is the base class.
+- `Mammal` is derived from `Animal`.
+- `Dog` is derived from `Mammal`.
+- The `Dog` class inherits attributes and methods from both `Animal` and `Mammal`, demonstrating multilevel inheritance.
+
+
+
+## Example of Hybrid Inheritance
+
+Hybrid inheritance is a combination of two or more types of inheritance. It allows for more complex relationships between classes. Here is an easy example demonstrating hybrid inheritance in Python:
+
+```python
+# Base class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+# Derived class inheriting from Animal (Single Inheritance)
+class Mammal(Animal):
+    def __init__(self, name, has_fur):
+        super().__init__(name)
+        self.has_fur = has_fur
+
+    def describe(self):
+        fur_status = "has fur" if self.has_fur else "does not have fur"
+        print(f"{self.name} is a mammal and {fur_status}")
+
+# Another base class
+class Bird(Animal):
+    def __init__(self, name, can_fly):
+        super().__init__(name)
+        self.can_fly = can_fly
+
+    def describe(self):
+        fly_status = "can fly" if self.can_fly else "cannot fly"
+        print(f"{self.name} is a bird and {fly_status}")
+
+# Derived class inheriting from both Mammal and Bird (Multiple Inheritance)
+class Bat(Mammal, Bird):
+    def __init__(self, name, has_fur, can_fly):
+        Mammal.__init__(self, name, has_fur)
+        Bird.__init__(self, name, can_fly)
+
+    def describe(self):
+        Mammal.describe(self)
+        Bird.describe(self)
+
+# Creating an instance of Bat
+bat = Bat("Batty", True, True)
+bat.speak()  # Output: Batty makes a sound
+bat.describe()
+# Output:
+# Batty is a mammal and has fur
+# Batty is a bird and can fly
+```
+
+In this example:
+- `Animal` is the base class.
+- `Mammal` and `Bird` are derived from `Animal` (single inheritance).
+- `Bat` is derived from both `Mammal` and `Bird` (multiple inheritance), demonstrating hybrid inheritance.
+- The `Bat` class inherits attributes and methods from both `Mammal` and `Bird`.
+
+This example shows how hybrid inheritance combines single and multiple inheritance to create a more complex class hierarchy.
+
+
+## Example of Hierarchical Inheritance
+
+Hierarchical inheritance is a type of inheritance where multiple subclasses inherit from a single superclass. This allows for the creation of a hierarchical relationship between classes.
+
+### Example
+
+```python
+# Base class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+# Derived class inheriting from Animal
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} barks")
+
+# Another derived class inheriting from Animal
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} meows")
+
+# Creating instances of Dog and Cat
+dog = Dog("Buddy")
+cat = Cat("Whiskers")
+
+dog.speak()  # Output: Buddy barks
+cat.speak()  # Output: Whiskers meows
+```
+
+In this example:
+- `Animal` is the base class.
+- `Dog` and `Cat` are derived classes that inherit from `Animal`.
+- Both `Dog` and `Cat` override the `speak` method to provide specific implementations.
+
+This demonstrates hierarchical inheritance, where multiple subclasses inherit from a single superclass.
+
+
+# Abstract Class and Interface in Python:
+In Python, abstract classes and interfaces are used to define a blueprint for other classes. They help ensure that certain methods are implemented in child classes. Let's break them down in an easy way.
+
+ **Abstraction is about designing a clear and simple interface for users while allowing developers to implement the details in a way that is hidden from the user. This separation makes the code more modular, reusable, and easier to maintain.**
+
+> **Abstraction simply means:**
+
+- Hindig implementation details
+- Only showing the essential features to the user
+- Generalizing something to hide the complex logic
+
+## Abstract Class in Python
+
+An abstract class is a class that cannot be instantiated (you cannot create objects from it directly). Instead, it serves as a blueprint for other classes. Abstract classes are useful when you want to enforce certain methods in all child classes.
+
+### Key Features of Abstract Classes
+- ✅ Can have abstract methods (methods without implementation)
+- ✅ Can have concrete methods (normal methods with implementation)
+- ✅ Cannot be instantiated directly
+- ✅ Child classes must implement all abstract methods
+
+### How to Create an Abstract Class?
+Python provides the ABC (Abstract Base Class) module to create abstract classes.
+
+### Example: Abstract Class
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):  # Abstract class
+    @abstractmethod
+    def sound(self):  # Abstract method (must be implemented in child classes)
+        pass
+
+class Dog(Animal):  
+    def sound(self):  # Implementing the abstract method
+        return "Bark"
+
+class Cat(Animal):
+    def sound(self):  # Implementing the abstract method
+        return "Meow"
+
+# obj = Animal()  # ❌ Error: Cannot create an object of an abstract class
+
+dog = Dog()
+print(dog.sound())  # ✅ Output: Bark
+
+cat = Cat()
+print(cat.sound())  # ✅ Output: Meow
+```
+
+### Why Use Abstract Classes?
+- To identify which has to be hidden and which has to be shown to the users.
+- To ensure all subclasses have certain methods
+- To prevent creating objects from a base class
+- To promote code consistency and structure
+
+## Interface in Python
+
+An interface is a special kind of abstract class that contains only abstract methods (methods with no implementation). It defines what a class should do, but not how it should do it.
+
+### Key Features of Interfaces
+- ✅ Contains only abstract methods (no normal methods)
+- ✅ Cannot be instantiated
+- ✅ Every class that implements an interface must override all its methods
+- ✅ Promotes multiple inheritance
+
+### How to Create an Interface?
+Python does not have a built-in interface keyword like Java, but we can use ABC to create one.
+
+### Example: Interface
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):  # Interface (only abstract methods)
+    @abstractmethod
+    def eat(self):
+        pass
+
+    @abstractmethod
+    def sleep(self):
+        pass
+
+class Dog(Animal):  
+    def eat(self):
+        return "Dog eats bone"
+
+    def sleep(self):
+        return "Dog sleeps in a kennel"
+
+class Cat(Animal):
+    def eat(self):
+        return "Cat eats fish"
+
+    def sleep(self):
+        return "Cat sleeps on the couch"
+
+dog = Dog()
+print(dog.eat())   # ✅ Output: Dog eats bone
+print(dog.sleep()) # ✅ Output: Dog sleeps in a kennel
+
+cat = Cat()
+print(cat.eat())   # ✅ Output: Cat eats fish
+print(cat.sleep()) # ✅ Output: Cat sleeps on the couch
+```
+
+
+
+### When to Use Abstract Class vs Interface
+
+| Use Case                                      | Choose Abstract Class | Choose Interface |
+|-----------------------------------------------|-----------------------|------------------|
+| You need to provide some default implementation | ✅ Yes                 | ❌ No            |
+| You only want to enforce method signatures    | ❌ No                  | ✅ Yes           |
+| You want to allow multiple inheritance        | ❌ No                  | ✅ Yes           |
+| You need to define attributes along with methods | ✅ Yes                 | ❌ No            |
+
+
+## Polymorphism in Python
+
+Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common superclass. It enables a single interface to represent different underlying forms (data types). Polymorphism is achieved through method overriding and method overloading.
+
+### Types of Polymorphism
+
+1. **Compile-Time Polymorphism (Method Overloading)**
+2. **Run-Time Polymorphism (Method Overriding)**
+
+### Method Overloading
+
+Method overloading allows multiple methods in the same class to have the same name but different parameters. Python does not support method overloading directly. However, you can achieve similar behavior using default arguments or variable-length arguments.
+
+#### Example: Method Overloading Using Default Arguments
+```python
+class Math:
+    def add(self, a, b, c=0):
+        return a + b + c
+
+math = Math()
+print(math.add(2, 3))      # Output: 5
+print(math.add(2, 3, 4))   # Output: 9
+```
+
+### Method Overriding
+
+Method overriding allows a subclass to provide a specific implementation of a method that is already defined in its superclass. The overridden method in the subclass should have the same name, parameters, and return type as the method in the superclass.
+
+#### Example: Method Overriding
+```python
+class Animal:
+    def sound(self):
+        print("Animal makes a sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Dog barks")
+
+class Cat(Animal):
+    def sound(self):
+        print("Cat meows")
+
+# Creating objects
+dog = Dog()
+cat = Cat()
+
+dog.sound()  # Output: Dog barks
+cat.sound()  # Output: Cat meows
+```
+
 
 ### Overriding Methods
 
@@ -2068,58 +3270,111 @@ print(dev.full_name())  # Output: John Doe
 Inheritance is a powerful feature in Python that helps in creating a hierarchical relationship between classes, promoting code reusability and maintainability.
 
 
-## Magic or Dunder Methods in Python
 
-Magic methods, also known as dunder (double underscore) methods, are special methods in Python that start and end with double underscores. These methods allow you to define the behavior of your objects for built-in operations such as addition, subtraction, string representation, and more. They are a powerful feature that enables you to make your custom objects behave like built-in types.
+## Operator Overloading in Python: An Introduction
 
-### Common Magic Methods
+Operator Overloading is a feature in Python that allows developers to redefine the behavior of mathematical and comparison operators for custom data types. This means that you can use the standard mathematical operators (`+`, `-`, `*`, `/`, etc.) and comparison operators (`>`, `<`, `==`, etc.) in your own classes, just as you would for built-in data types like `int`, `float`, and `str`.
 
-1. `__init__(self, ...)`: Initializes a new instance of a class.
-2. `__str__(self)`: Returns a human-readable string representation of an object.
-3. `__repr__(self)`: Returns an unambiguous string representation of an object, ideally one that could be used to recreate the object.
-4. `__len__(self)`: Returns the length of the object.
-5. `__call__(self, ...)`: Makes an instance callable like a function.
+### Why Do We Need Operator Overloading?
 
-### Example: Employee Class with Magic Methods
-
-Below is an example of an `Employee` class that demonstrates the use of several magic methods:
+Operator overloading allows you to create more readable and intuitive code. For instance, consider a custom class that represents a point in 2D space. You could define a method called `add` to add two points together, but using the `+` operator makes the code more concise and readable:
 
 ```python
-class Employee:
-    def __init__(self, name):
-        self.name = name
-        
-    def __len__(self):
-        i = 0
-        for c in self.name:
-            i += 1
-        return i
-    
-    def __str__(self):
-        return f'The name of the employee is {self.name} str.'
-    
-    def __call__(self, *args, **kwds):
-        print(f'Employee name is {self.name}')
-    
-    def __repr__(self):
-        return f"Employee('{self.name}')"
-        
-e = Employee("Hridoy")
-print(e)          # Output: The name of the employee is Hridoy str.
-print(str(e))     # Output: The name of the employee is Hridoy str.
-print(repr(e))    # Output: Employee('Hridoy')
-e()               # Output: Employee name is Hridoy
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+p3 = p1 + p2
+print(p3.x, p3.y)  # prints 4, 6
 ```
 
-### Explanation
+### How to Overload an Operator in Python?
 
-- `__init__(self, name)`: Initializes the `Employee` object with a `name` attribute.
-- `__len__(self)`: Returns the length of the employee's name.
-- `__str__(self)`: Returns a human-readable string representation of the `Employee` object.
-- `__call__(self, *args, **kwds)`: Makes the `Employee` instance callable, printing the employee's name.
-- `__repr__(self)`: Returns an unambiguous string representation of the `Employee` object.
+You can overload an operator in Python by defining special methods in your class. These methods are identified by their names, which start and end with double underscores (`__`). Here are some of the most commonly overloaded operators and their corresponding special methods:
 
-Magic methods enhance the functionality and usability of your custom classes, making them more intuitive and easier to work with.
+- `+` : `__add__`
+- `-` : `__sub__`
+- `*` : `__mul__`
+- `/` : `__truediv__`
+- `<` : `__lt__`
+- `>` : `__gt__`
+- `==` : `__eq__`
+
+For example, if you want to overload the `+` operator to add two instances of a custom class, you would define the `__add__` method:
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+```
+
+It's important to note that operator overloading is not limited to the built-in operators; you can overload any user-defined operator as well.
+
+## Static Typing vs Dynamic Typing
+
+| Feature              | Static Typing                                  | Dynamic Typing                                  |
+|----------------------|------------------------------------------------|------------------------------------------------|
+| **Definition**       | Types known at compile time                    | Types known at runtime                         |
+| **Type Checking**    | Compile-time                                   | Runtime                                        |
+| **Error Detection**  | During compilation                             | During execution                               |
+| **Flexibility**      | Less flexible, explicit types required         | More flexible, types inferred automatically    |
+| **Performance**      | Generally faster                               | May be slower                                  |
+| **Examples**         | C, C++, Java                                    | Python, JavaScript, Ruby                       |
+| **Code Readability** | More readable with explicit types              | Less readable without explicit types           |
+
+
+
+
+
+## What is Duck Typing?
+
+Duck Typing is a concept in dynamic programming languages where an object's behavior (methods and properties) determines its type, rather than explicitly defining it.
+
+The name comes from the phrase:
+> "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
+
+### Key Idea:
+Instead of checking if an object belongs to a particular class, we check if it has the required methods or attributes.
+
+
+## Payment Processing System (Duck Typing in Action)
+
+Imagine a payment system where users can pay using Credit Card, PayPal, or Bitcoin. Instead of checking types explicitly, we rely on a common `pay()` method.
+
+```python
+class CreditCard:
+    def pay(self, amount):
+        print(f"Paid ${amount} using Credit Card")
+
+class PayPal:
+    def pay(self, amount):
+        print(f"Paid ${amount} using PayPal")
+
+class Bitcoin:
+    def pay(self, amount):
+        print(f"Paid ${amount} using Bitcoin")
+
+def process_payment(payment_method, amount):
+    payment_method.pay(amount)  # We don’t care which class, just that it has a pay() method
+
+cc = CreditCard()
+pp = PayPal()
+btc = Bitcoin()
+
+process_payment(cc, 100)   # Output: Paid $100 using Credit Card
+process_payment(pp, 50)    # Output: Paid $50 using PayPal
+process_payment(btc, 200)  # Output: Paid $200 using Bitcoin
+```
+
+### Why is this useful?
+
+- No need for a base class or interface! Just ensure every payment method has a `pay()` method.
+- Easier to add new payment methods (e.g., Apple Pay, Google Pay) without modifying existing code.
+
+
+
 
 
 
