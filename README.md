@@ -3374,6 +3374,178 @@ process_payment(btc, 200)  # Output: Paid $200 using Bitcoin
 - Easier to add new payment methods (e.g., Apple Pay, Google Pay) without modifying existing code.
 
 
+# Async IO in Python
+
+## What is Async IO?
+
+**Async IO (Asynchronous Input/Output)** is a programming technique that allows multiple tasks to run concurrently without blocking execution. It is useful for handling I/O-bound operations like network requests, file handling, and database queries efficiently.
+
+---
+
+## Why Use Async IO?
+
+- **Non-blocking execution** – Tasks run without waiting for each other.
+- **Faster performance** – Efficient handling of multiple operations.
+- **Ideal for I/O-bound tasks** – Works well with APIs, web scraping, and real-time applications.
+
+---
+
+## How Async IO Works
+
+### **1. Synchronous Code (Blocking)**
+
+```python
+import time
+
+def task(name):
+    print(f"Starting {name}")
+    time.sleep(3)  # Blocks execution
+    print(f"Finished {name}")
+
+task("Task 1")
+task("Task 2")
+print("All tasks done!")
+```
+
+⏳ **Total time: \~6 seconds** (Tasks run one after another)
+
+---
+
+### **2. Asynchronous Code (Non-blocking)**
+
+```python
+import asyncio
+
+async def task(name):
+    print(f"Starting {name}")
+    await asyncio.sleep(3)  # Non-blocking
+    print(f"Finished {name}")
+
+async def main():
+    await asyncio.gather(
+        task("Task 1"),
+        task("Task 2")
+    )
+
+asyncio.run(main())
+```
+
+🚀 **Total time: \~3 seconds** (Tasks run concurrently)
+
+---
+
+## Key Concepts
+
+| Term                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| **`async`**            | Defines an asynchronous function.                   |
+| **`await`**            | Pauses execution until an async function completes. |
+| **`asyncio.run()`**    | Runs an async function in an event loop.            |
+| **`asyncio.gather()`** | Runs multiple async functions concurrently.         |
+
+---
+
+## When to Use Async IO?
+
+✅ **Best for:**
+
+- Network requests (APIs, web scraping)
+- Database queries
+- Real-time applications (chat apps, live dashboards)
+- File operations (reading/writing large files)
+
+❌ **Not suitable for:**
+
+- CPU-heavy tasks (image processing, data analysis)
+
+---
+
+## Summary
+
+- Async IO allows **faster and more efficient** execution for I/O-bound tasks.
+- Uses `async` and `await` for **non-blocking** operations.
+- Ideal for web servers, APIs, and data streaming applications.
+
+
+
+## Threading in Python
+
+Threading in Python allows multiple tasks (threads) to run concurrently within the same program. It's useful for tasks like downloading multiple files, handling multiple users in a server, or running background tasks without freezing the main program.
+
+### Key Concepts
+- **Thread 🧵**: A small unit of a program that can run independently.
+- **Multithreading 🔄**: Running multiple threads at the same time.
+- **Global Interpreter Lock (GIL) 🔒**: In Python, only one thread can execute Python code at a time. So, threading is best for I/O-bound tasks (e.g., network requests, file reading) but not for CPU-bound tasks (e.g., complex calculations).
+- **Thread Safety ⚠️**: Be careful when multiple threads access shared data. Use locks to prevent issues.
+
+### Simple Thread Example
+Here’s how you create and run a thread:
+
+```python
+import threading
+
+def print_numbers():
+    for i in range(5):
+        print(f"Number {i}")
+
+# Create a thread
+thread = threading.Thread(target=print_numbers)
+
+# Start the thread
+thread.start()
+
+# Wait for the thread to finish
+thread.join()
+
+print("Thread finished!")
+```
+
+#### Explanation:
+- `threading.Thread(target=print_numbers)`: Creates a new thread to run the function.
+- `thread.start()`: Starts the thread.
+- `thread.join()`: Waits for the thread to finish before continuing.
+
+### Running Multiple Threads
+
+```python
+import threading
+import time
+
+# Indicates some task being done
+def func(seconds):
+    print(f'Sleeping for {seconds} seconds:')
+    for i in range(seconds, 0, -1):
+        time.sleep(1)
+        print(f'\t{i}')
+
+# Count time:
+timer_start = time.perf_counter()
+
+# Same code using Threads:
+t1 = threading.Thread(target=func, args=[4])
+t2 = threading.Thread(target=func, args=[3])
+t3 = threading.Thread(target=func, args=[2])
+
+t1.start()
+t2.start()
+t3.start()
+
+# Waiting for their end:
+t1.join()
+t2.join()
+t3.join()
+
+timer_final = time.perf_counter()
+print(f"Total time taken: {timer_final - timer_start} seconds")
+```
+
+#### Explanation:
+- `threading.Thread(target=func, args=[seconds])`: Creates threads to run the func with different sleep times.
+- `t1.start(), t2.start(), t3.start()`: Starts the threads simultaneously.
+- `t1.join(), t2.join(), t3.join()`: Waits for all threads to finish before moving forward.
+- `time.perf_counter()`: Measures the total time taken for the threads to complete.
+
+> ## Skipped GIL and Locking Race Condition...
 
 
 
