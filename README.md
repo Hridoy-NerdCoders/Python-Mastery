@@ -3472,6 +3472,8 @@ asyncio.run(main())
 
 Threading in Python allows multiple tasks (threads) to run concurrently within the same program. It's useful for tasks like downloading multiple files, handling multiple users in a server, or running background tasks without freezing the main program.
 
+![alt text](images/multithread.png)
+
 ### Key Concepts
 - **Thread 🧵**: A small unit of a program that can run independently.
 - **Multithreading 🔄**: Running multiple threads at the same time.
@@ -3548,8 +3550,104 @@ print(f"Total time taken: {timer_final - timer_start} seconds")
 > ## Skipped GIL and Locking Race Condition...
 
 
+# Multiprocessing in Python
+
+## **What is Multiprocessing?**
+Multiprocessing is a technique in Python that allows programs to execute multiple tasks simultaneously by using multiple CPU cores. Unlike multithreading, which is limited by Python's Global Interpreter Lock (GIL), multiprocessing enables true parallel execution, making it ideal for CPU-bound tasks.
+
+---
+
+![alt text](images/multiprocessing.png)
+
+## **Key Concepts of Multiprocessing**
+
+### 🔹 **1. Process vs. Thread**
+- A **process** has its own memory space and runs independently.
+- A **thread** shares memory with other threads within the same process.
+
+### 🔹 **2. When to Use Multiprocessing?**
+✅ **Best for CPU-bound tasks**, such as:
+- Image & video processing
+- Machine learning computations
+- Large-scale data analysis
+
+### 🔹 **3. Key Components of Multiprocessing**
+| **Component** | **Description** |
+|--------------|----------------|
+| `multiprocessing.Process` | Creates a new process to run a function. |
+| `multiprocessing.Pool` | Manages a pool of worker processes. |
+| `process.start()` | Starts the process execution. |
+| `process.join()` | Waits for the process to finish before continuing. |
+
+---
+
+## **Example: Downloading Images Using Multiprocessing**
+```python
+import multiprocessing
+import requests
+import os
+
+def download_file(url, name):
+    print(f"Started Downloading {name}")
+    
+    # Ensure directory exists
+    os.makedirs("images", exist_ok=True)
+    
+    response = requests.get(url)
+    with open(f"images/img{name}.jpg", "wb") as file:
+        file.write(response.content)
+    
+    print(f"Finished Downloading {name}")
+
+url = "https://picsum.photos/3000/3000"
+processes = []
+
+# Start multiple processes
+for i in range(20):
+    process = multiprocessing.Process(target=download_file, args=[url, i])
+    processes.append(process)
+    process.start()
+
+# Wait for all processes to complete
+for process in processes:
+    process.join()
+    
+print("All Downloads Completed!")
+```
+
+---
+
+## **How This Works?**
+1. **Creates multiple processes** using `multiprocessing.Process`.
+2. Each process runs `download_file(url, name)`, downloading an image concurrently.
+3. `process.start()` starts each process.
+4. `process.join()` ensures all downloads complete before exiting.
+
+### 🚀 **Why Multiprocessing?**
+- Takes full advantage of multiple CPU cores.
+- Avoids the Global Interpreter Lock (GIL) limitation.
+- Faster execution for CPU-bound tasks.
+
+✅ **Multiprocessing is powerful for parallel execution of independent tasks!**
 
 
+
+## Summary Table: Async IO, Threading, and Multiprocessing in Python
+
+| Feature/Concept         | Async IO                                      | Threading                                      | Multiprocessing                                |
+|-------------------------|-----------------------------------------------|------------------------------------------------|------------------------------------------------|
+| **Definition**          | Asynchronous I/O-bound tasks                  | Concurrent execution within a single process   | Parallel execution using multiple processes    |
+| **Ideal For**           | I/O-bound tasks                               | I/O-bound tasks                                | CPU-bound tasks                                |
+| **Execution Model**     | Non-blocking, event-driven                    | Concurrent, limited by GIL                     | True parallelism, separate memory space        |
+| **Key Functions**       | `async`, `await`, `asyncio.run()`             | `threading.Thread()`, `thread.start()`         | `multiprocessing.Process()`, `process.start()` |
+| **Concurrency**         | Yes                                           | Yes                                            | Yes                                            |
+| **Parallelism**         | No                                            | No                                             | Yes                                            |
+| **GIL Impact**          | Not affected                                  | Affected                                       | Not affected                                   |
+| **Memory Usage**        | Shared within event loop                      | Shared within threads                          | Separate memory space                          |
+| **Communication**       | `asyncio.Queue`, `asyncio.Event`              | `queue.Queue`, `threading.Event`               | `multiprocessing.Queue`, `multiprocessing.Pipe`|
+| **Use Cases**           | Web servers, real-time apps                   | Background tasks, GUIs                         | Data analysis, machine learning                |
+| **Setup Complexity**    | Moderate                                      | Easy                                           | Moderate                                       |
+| **Performance**         | High for I/O-bound tasks                      | Moderate for I/O-bound tasks                   | High for CPU-bound tasks                       |
 
 
 ## Most Asked Questions and Answers
