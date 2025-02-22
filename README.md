@@ -3374,6 +3374,159 @@ process_payment(btc, 200)  # Output: Paid $200 using Bitcoin
 - Easier to add new payment methods (e.g., Apple Pay, Google Pay) without modifying existing code.
 
 
+# Python Concurrency: Async IO, Multithreading, and Multiprocessing
+
+## **1. Introduction to Concurrency**
+Concurrency in Python allows executing multiple tasks at the same time. There are three main techniques for achieving concurrency:
+1. **Async IO** - Best for I/O-bound tasks.
+2. **Multithreading** - Useful for I/O-bound tasks but limited by the Global Interpreter Lock (GIL).
+3. **Multiprocessing** - Best for CPU-bound tasks as it bypasses the GIL.
+
+---
+
+## **2. Async IO**
+### 🔹 **What is Async IO?**
+Async IO is a non-blocking way to handle I/O-bound tasks using an event loop. Instead of waiting for one task to complete, the program can switch to another task while waiting.
+
+### 🔹 **Key Concepts**
+| **Concept** | **Description** |
+|------------|----------------|
+| `async` | Declares an asynchronous function. |
+| `await` | Pauses execution until the awaited task completes. |
+| `asyncio.run()` | Runs the event loop. |
+| `asyncio.gather()` | Runs multiple async tasks concurrently. |
+
+### 🔹 **Example**
+```python
+import asyncio
+
+async def task(name):
+    print(f"Starting {name}")
+    await asyncio.sleep(2)
+    print(f"Finished {name}")
+
+async def main():
+    await asyncio.gather(task("Task 1"), task("Task 2"))
+
+asyncio.run(main())
+```
+
+✅ **Best for:** Web scraping, API calls, database queries.
+
+---
+
+## **3. Multithreading**
+### 🔹 **What is Multithreading?**
+Multithreading allows multiple threads to execute in parallel within the same process. However, Python's GIL limits true parallel execution.
+
+### 🔹 **Key Concepts**
+| **Concept** | **Description** |
+|------------|----------------|
+| `threading.Thread` | Creates a new thread. |
+| `.start()` | Starts the thread. |
+| `.join()` | Waits for the thread to complete. |
+
+### 🔹 **Example**
+```python
+import threading
+import time
+
+def task(name):
+    print(f"Starting {name}")
+    time.sleep(2)
+    print(f"Finished {name}")
+
+threads = []
+for i in range(2):
+    t = threading.Thread(target=task, args=(f"Thread-{i+1}",))
+    threads.append(t)
+    t.start()
+
+for t in threads:
+    t.join()
+```
+
+✅ **Best for:** Running multiple I/O operations simultaneously.
+
+---
+
+## **4. Multiprocessing**
+### 🔹 **What is Multiprocessing?**
+Multiprocessing creates separate processes, each with its own memory space, allowing true parallel execution on multiple CPU cores.
+
+### 🔹 **Key Concepts**
+| **Concept** | **Description** |
+|------------|----------------|
+| `multiprocessing.Process` | Creates a new process. |
+| `.start()` | Starts the process. |
+| `.join()` | Waits for the process to finish. |
+
+### 🔹 **Example**
+```python
+import multiprocessing
+import time
+
+def task(name):
+    print(f"Starting {name}")
+    time.sleep(2)
+    print(f"Finished {name}")
+
+processes = []
+for i in range(2):
+    p = multiprocessing.Process(target=task, args=(f"Process-{i+1}",))
+    processes.append(p)
+    p.start()
+
+for p in processes:
+    p.join()
+```
+
+✅ **Best for:** CPU-intensive tasks like data processing, machine learning, and encryption.
+
+---
+
+## **5. Event Loop in Async IO**
+### 🔹 **What is an Event Loop?**
+An event loop is a mechanism in async programming that schedules and manages tasks efficiently.
+
+### 🔹 **How It Works**
+1. The event loop runs and checks for tasks.
+2. It executes tasks that are ready while waiting for others.
+3. When a task completes, it schedules the next one.
+
+### 🔹 **Example**
+```python
+import asyncio
+async def hello():
+    print("Hello")
+    await asyncio.sleep(1)
+    print("World")
+asyncio.run(hello())
+```
+
+✅ **Event loops manage async tasks efficiently, avoiding unnecessary blocking.**
+
+---
+
+## **6. I/O-Bound vs CPU-Bound Tasks**
+| **Type** | **Description** | **Best Approach** |
+|----------|---------------|----------------|
+| **I/O-Bound** | Waiting for input/output operations (e.g., network calls, disk I/O) | **Async IO or Multithreading** |
+| **CPU-Bound** | Heavy computations that use CPU resources | **Multiprocessing** |
+
+---
+
+## **7. Summary**
+| **Technique** | **Best For** | **Key Limitation** |
+|-------------|-------------|----------------|
+| **Async IO** | Network requests, file I/O, web scraping | Not ideal for CPU-bound tasks |
+| **Multithreading** | I/O-bound tasks with multiple threads | Limited by GIL, no true parallelism |
+| **Multiprocessing** | CPU-intensive computations | Higher memory usage due to separate processes |
+
+✅ **Understanding these techniques helps optimize performance for different types of tasks!**
+
+
+
 # Async IO in Python
 
 ## What is Async IO?
@@ -3648,6 +3801,7 @@ print("All Downloads Completed!")
 | **Use Cases**           | Web servers, real-time apps                   | Background tasks, GUIs                         | Data analysis, machine learning                |
 | **Setup Complexity**    | Moderate                                      | Easy                                           | Moderate                                       |
 | **Performance**         | High for I/O-bound tasks                      | Moderate for I/O-bound tasks                   | High for CPU-bound tasks                       |
+
 
 
 ## Most Asked Questions and Answers
